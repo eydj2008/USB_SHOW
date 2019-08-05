@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testdraw", "testdraw.vcxproj", "{4C0A048F-DEA2-4474-DACF-7F1CF5936BF4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testdraw", "testdraw.vcxproj", "{AE48169F-CD2A-A331-A912-29B6977D48B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4C0A048F-DEA2-4474-DACF-7F1CF5936BF4}.Debug|Win32.ActiveCfg = Debug|Win32
-		{4C0A048F-DEA2-4474-DACF-7F1CF5936BF4}.Debug|Win32.Build.0 = Debug|Win32
-		{4C0A048F-DEA2-4474-DACF-7F1CF5936BF4}.Release|Win32.ActiveCfg = Release|Win32
-		{4C0A048F-DEA2-4474-DACF-7F1CF5936BF4}.Release|Win32.Build.0 = Release|Win32
+		{AE48169F-CD2A-A331-A912-29B6977D48B5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AE48169F-CD2A-A331-A912-29B6977D48B5}.Debug|Win32.Build.0 = Debug|Win32
+		{AE48169F-CD2A-A331-A912-29B6977D48B5}.Release|Win32.ActiveCfg = Release|Win32
+		{AE48169F-CD2A-A331-A912-29B6977D48B5}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

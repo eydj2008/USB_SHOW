@@ -1084,6 +1084,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SetDlg.cpp" />
     <ClCompile Include="Source\Graph\Graph.cpp" />
     <ClCompile Include="Source\Graph\GraphDataColor.cpp" />
     <ClCompile Include="Source\Graph\GraphDataSet.cpp" />
@@ -1105,8 +1106,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SetDlg.h" />
+    <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="SetPaneSize.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

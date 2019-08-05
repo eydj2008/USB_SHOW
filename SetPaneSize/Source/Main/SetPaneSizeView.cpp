@@ -1,4 +1,4 @@
-// This is a part of the Microsoft Foundation Classes C++ library.
+﻿// This is a part of the Microsoft Foundation Classes C++ library.
 // Copyright (C) Microsoft Corporation
 // All rights reserved.
 //
@@ -30,10 +30,10 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNCREATE(CSetPaneSizeView, CFormView)
 
 BEGIN_MESSAGE_MAP(CSetPaneSizeView, CFormView)
-	ON_BN_CLICKED(IDC_BUTTON_SET_DLGBAR_SIZE, OnButtonSetDlgBarSize)
-	ON_BN_CLICKED(IDC_BUTTON_SET_CONTAINER_SIZE, OnButtonSetContainerSize)
-	ON_BN_CLICKED(IDC_BTN_SET_HEIGHT_IN_PIXELS, OnBtnSetHeightInPixels)
-	ON_BN_CLICKED(IDC_BTN_SET_WIDTH_IN_PIXELS, OnBtnSetWidthInPixels)
+	//ON_BN_CLICKED(IDC_BUTTON_SET_DLGBAR_SIZE, OnButtonSetDlgBarSize)
+	//ON_BN_CLICKED(IDC_BUTTON_SET_CONTAINER_SIZE, OnButtonSetContainerSize)
+	//ON_BN_CLICKED(IDC_BTN_SET_HEIGHT_IN_PIXELS, OnBtnSetHeightInPixels)
+	//ON_BN_CLICKED(IDC_BTN_SET_WIDTH_IN_PIXELS, OnBtnSetWidthInPixels)
 	ON_WM_CONTEXTMENU()
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CFormView::OnFilePrint)
@@ -57,17 +57,18 @@ CSetPaneSizeView::~CSetPaneSizeView()
 {
 }
 
+
 void CSetPaneSizeView::DoDataExchange(CDataExchange* pDX)
 {
-	CFormView::DoDataExchange(pDX);
-	DDX_Text(pDX, IDC_EDIT_SIZE, m_nSizePercent);
-	DDV_MinMaxUInt(pDX, m_nSizePercent, 1, 99);
-	DDX_Text(pDX, IDC_EDIT_WIDTH, m_nContainerSize);
-	DDV_MinMaxUInt(pDX, m_nContainerSize, 1, 2056);
-	DDX_Text(pDX, IDC_EDIT_HEIGHT_IN_PIXELS, m_nHeightInPixels);
-	DDV_MinMaxUInt(pDX, m_nHeightInPixels, 1, 2056);
-	DDX_Text(pDX, IDC_EDIT_WIDTH_IN_PIXELS, m_nWidthInPixels);
-	DDV_MinMaxUInt(pDX, m_nWidthInPixels, 1, 2056);
+	//CFormView::DoDataExchange(pDX);
+	//DDX_Text(pDX, IDC_EDIT_SIZE, m_nSizePercent);
+	//DDV_MinMaxUInt(pDX, m_nSizePercent, 1, 99);
+	//DDX_Text(pDX, IDC_EDIT_WIDTH, m_nContainerSize);
+	//DDV_MinMaxUInt(pDX, m_nContainerSize, 1, 2056);
+	//DDX_Text(pDX, IDC_EDIT_HEIGHT_IN_PIXELS, m_nHeightInPixels);
+	//DDV_MinMaxUInt(pDX, m_nHeightInPixels, 1, 2056);
+	//DDX_Text(pDX, IDC_EDIT_WIDTH_IN_PIXELS, m_nWidthInPixels);
+	//DDV_MinMaxUInt(pDX, m_nWidthInPixels, 1, 2056);
 }
 
 BOOL CSetPaneSizeView::PreCreateWindow(CREATESTRUCT& cs)
@@ -91,10 +92,27 @@ void CSetPaneSizeView::OnInitialUpdate()
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();
 
+	graphComplete = FALSE;
+
+
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // CSetPaneSizeView printing
+
+void CSetPaneSizeView::OnDraw(CDC* pDC)
+{
+	CSetPaneSizeDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+	// TODO: add draw code for native data here
+
+	if(graphComplete)
+		testGraph->DrawGraph(pDC);
+
+	UpdateWindow();
+	//UpdateData(FALSE);
+
+}
 
 void CSetPaneSizeView::OnFilePrintPreview() 
 {
@@ -107,7 +125,7 @@ BOOL CSetPaneSizeView::OnPreparePrinting(CPrintInfo* pInfo)
 	return DoPreparePrinting(pInfo);
 }
 
-void CSetPaneSizeView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
+void CSetPaneSizeView::OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo)
 {
 	// TODO: add extra initialization before printing
 }
@@ -117,9 +135,13 @@ void CSetPaneSizeView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 	// TODO: add cleanup after printing
 }
 
-void CSetPaneSizeView::OnPrint(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
+void CSetPaneSizeView::OnPrint(CDC* pDC, CPrintInfo* /*pInfo*/)
 {
 	// TODO: add customized printing code here
+	//CPaintDC dc(this);
+	//OnPrepareDC(&dc);
+	//OnDraw(&dc);
+	
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -150,6 +172,8 @@ void CSetPaneSizeView::OnContextMenu(CWnd*, CPoint point)
 {
 	theApp.ShowPopupMenu (IDR_CONTEXT_MENU, point, this);
 }
+
+#if 0
 
 void CSetPaneSizeView::OnButtonSetDlgBarSize() 
 {
@@ -225,7 +249,7 @@ void CSetPaneSizeView::OnButtonSetContainerSize()
 	testGraph->SetLegend(1, "game 2");
 	testGraph->SetLegend(2, "game 3");
 
-	//graphComplete = TRUE;
+	graphComplete = TRUE;
 	Invalidate(TRUE);
 
 
@@ -250,3 +274,4 @@ void CSetPaneSizeView::OnBtnSetWidthInPixels()
 		pMainFrame->SetDlgBarWidthInPixels (m_nWidthInPixels);
 	}
 }
+#endif

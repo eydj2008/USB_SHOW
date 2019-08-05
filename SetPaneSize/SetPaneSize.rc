@@ -211,28 +211,16 @@ IDD_SetPaneSize_FORM DIALOGEX 0, 0, 320, 200
 STYLE DS_SETFONT | WS_CHILD
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
-    LTEXT           "Set bar size in container (1 - 99%):",IDC_STATIC,7,68,112,11
-    EDITTEXT        IDC_EDIT_SIZE,151,65,25,14,ES_NUMBER
-    PUSHBUTTON      "Set",IDC_BUTTON_SET_DLGBAR_SIZE,186,65,50,14
-    LTEXT           "Set width or height of container in pixels:",IDC_STATIC,7,49,132,11
-    EDITTEXT        IDC_EDIT_WIDTH,151,46,25,14,ES_NUMBER
-    PUSHBUTTON      "Set",IDC_BUTTON_SET_CONTAINER_SIZE,186,46,49,14
-    LTEXT           "You can adjust size of the DialogBar control in container\nor size of container where the Dialog bar resides",IDC_STATIC,7,18,182,20
-    LTEXT           "Set bar width in container (in pixels):",IDC_STATIC,7,86,125,8
-    LTEXT           "Set bar height in container (in pixels):",IDC_STATIC,7,105,127,8
-    EDITTEXT        IDC_EDIT_WIDTH_IN_PIXELS,151,83,26,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EDIT_HEIGHT_IN_PIXELS,151,102,26,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Set",IDC_BTN_SET_WIDTH_IN_PIXELS,186,83,50,14
-    PUSHBUTTON      "Set",IDC_BTN_SET_HEIGHT_IN_PIXELS,186,102,50,14
-    CONTROL         "",IDC_GRAPH_FRAME,"Static",SS_BLACKFRAME,7,128,251,57
-    PUSHBUTTON      "Draw",IDC_DRAW_BTN,263,55,50,14
+    CONTROL         "",IDC_GRAPH_FRAME,"Static",SS_BLACKFRAME,7,7,251,178
 END
 
-IDD_DLG_BAR DIALOG 0, 0, 186, 90
+IDD_DLG_BAR DIALOGEX 0, 0, 186, 90
 STYLE DS_SETFONT | WS_CHILD | WS_CLIPSIBLINGS | WS_CLIPCHILDREN
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
-    LTEXT           "This is a simple dialog bar",IDC_STATIC,7,7,80,13
+    LTEXT           "This is a simple dialog bar",IDC_STATIC,7,7,172,17
+    PUSHBUTTON      "Draw",IDC_DRAW_BTN,7,33,50,14
+    PUSHBUTTON      "Button2",IDC_BUTTON2,7,55,50,14
 END
 
 

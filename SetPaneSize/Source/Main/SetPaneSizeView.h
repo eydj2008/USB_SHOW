@@ -24,17 +24,19 @@ public:
 	UINT	m_nContainerSize;
 	UINT	m_nHeightInPixels;
 	UINT	m_nWidthInPixels;
+	UINT    graphComplete;
 	CGraph* testGraph;
 
 // Attributes
 public:
 	CSetPaneSizeDoc* GetDocument();
 
-// Operations
+// Operations                          
 public:
 
 // Overrides
 	public:
+    virtual void OnDraw(CDC* pDC); 
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
