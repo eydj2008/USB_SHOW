@@ -175,6 +175,7 @@
     <ClInclude Include="Include\testdraw.h" />
     <ClInclude Include="Include\testdrawDoc.h" />
     <ClInclude Include="Include\testdrawView.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

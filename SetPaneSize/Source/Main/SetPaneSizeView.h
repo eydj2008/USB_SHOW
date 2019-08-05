@@ -10,6 +10,8 @@
 
 #pragma once
 
+#include "Graph.h"
+
 class CSetPaneSizeView : public CFormView
 {
 protected: // create from serialization only
@@ -22,6 +24,7 @@ public:
 	UINT	m_nContainerSize;
 	UINT	m_nHeightInPixels;
 	UINT	m_nWidthInPixels;
+	CGraph* testGraph;
 
 // Attributes
 public:

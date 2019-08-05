@@ -15,6 +15,9 @@
 #include "SetPaneSizeView.h"
 #include "MainFrm.h"
 
+//#include "Graph.h"
+
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -166,6 +169,66 @@ void CSetPaneSizeView::OnButtonSetContainerSize()
 	{
 		pMainFrame->SetContainerSize (m_nContainerSize);
 	}
+
+	// TODO: Add your command handler code here
+	testGraph = new CGraph(LINE_GRAPH);
+	testGraph->SetGraphTitle("Line Graph");
+	//	testGraph->SetGraphAlignment(HORIZONTAL_ALIGN);
+
+	//	testGraph.SetGraphType(1);
+	testGraph->SetXAxisAlignment(0);
+	//	testGraph->SetXAxisAlignment(90);
+	//	testGraph->SetXAxisAlignment(270);
+	//	testGraph->SetXAxisAlignment(45);
+	//	testGraph->SetXAxisAlignment(315);
+	testGraph->SetXAxisLabel("Games");
+	testGraph->SetYAxisLabel("Scores");
+	//	testGraph->SetTickLimits(0, 300, 50);
+	testGraph->SetTickLimits(63, 74, 1);
+
+	//set up some series
+	CGraphSeries* series1 = new CGraphSeries();
+	CGraphSeries* series2 = new CGraphSeries();
+	CGraphSeries* series3 = new CGraphSeries();
+	series1->SetLabel("day 1");
+	series2->SetLabel("day 2");
+	series3->SetLabel("day 3");
+	//	series1->SetData(0, 150);
+	//	series1->SetData(1, 202);
+	//	series1->SetData(2, 230);
+	//	series2->SetData(0, 199);
+	//	series2->SetData(1, 140);
+	//	series2->SetData(2, 279);
+	//	series3->SetData(0, 204);
+	//	series3->SetData(1, 221);
+	//	series3->SetData(2, 208);
+	series1->SetData(0, 64);
+	series1->SetData(1, 72);
+	series1->SetData(2, 70);
+	series2->SetData(0, 63);
+	series2->SetData(1, 68);
+	series2->SetData(2, 71);
+	series3->SetData(0, 74);
+	series3->SetData(1, 69);
+	series3->SetData(2, 66);
+
+	testGraph->AddSeries(series1);
+	testGraph->AddSeries(series2);
+	testGraph->AddSeries(series3);
+
+	testGraph->SetColor(0, FOREST_GREEN);
+	testGraph->SetColor(1, SKY_BLUE);
+	testGraph->SetColor(2, DUSK);
+
+	//set up legend
+	testGraph->SetLegend(0, "game 1");
+	testGraph->SetLegend(1, "game 2");
+	testGraph->SetLegend(2, "game 3");
+
+	//graphComplete = TRUE;
+	Invalidate(TRUE);
+
+
 }
 
 void CSetPaneSizeView::OnBtnSetHeightInPixels() 

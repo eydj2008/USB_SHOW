@@ -16,6 +16,8 @@
 
 #include "resource.h"       // main symbols
 
+
+
 /////////////////////////////////////////////////////////////////////////////
 // CSetPaneSizeApp:
 // See SetPaneSize.cpp for the implementation of this class
@@ -24,12 +26,14 @@
 class CSetPaneSizeApp : public CWinAppEx
 {
 public:
+	
 	CSetPaneSizeApp();
 
 	virtual void PreLoadState ();
 
 // Overrides
 	public:
+    
 	virtual BOOL InitInstance();
 	virtual int ExitInstance();
 
