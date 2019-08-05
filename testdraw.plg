@@ -1,0 +1,47 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: testdraw - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\GKM-YDJ\LOCALS~1\Temp\RSPEF.tmp" with contents
+[
+/nologo /MD /W4 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/testdraw.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"E:\WORK\CPU\VC\ohers\VC图表控件\Graph.cpp"
+]
+Creating command line "cl.exe @"C:\DOCUME~1\GKM-YDJ\LOCALS~1\Temp\RSPEF.tmp"" 
+Creating temporary file "C:\DOCUME~1\GKM-YDJ\LOCALS~1\Temp\RSPF0.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:no /pdb:"Release/testdraw.pdb" /machine:I386 /out:"Release/testdraw.exe" 
+".\Release\Graph.obj"
+".\Release\GraphDataColor.obj"
+".\Release\GraphDataSet.obj"
+".\Release\GraphDlg.obj"
+".\Release\GraphLegend.obj"
+".\Release\GraphLegendSet.obj"
+".\Release\GraphPieLabel.obj"
+".\Release\GraphSeries.obj"
+".\Release\GraphSettingsDlg.obj"
+".\Release\MainFrm.obj"
+".\Release\StdAfx.obj"
+".\Release\testdraw.obj"
+".\Release\testdrawDoc.obj"
+".\Release\testdrawView.obj"
+".\Release\testdraw.res"
+]
+Creating command line "link.exe @"C:\DOCUME~1\GKM-YDJ\LOCALS~1\Temp\RSPF0.tmp""
+<h3>Output Window</h3>
+Compiling...
+Graph.cpp
+E:\WORK\CPU\VC\ohers\VC图表控件\Graph.cpp(2788) : warning C4100: 'pInfo' : unreferenced formal parameter
+Linking...
+
+
+
+<h3>Results</h3>
+testdraw.exe - 0 error(s), 1 warning(s)
+</pre>
+</body>
+</html>
