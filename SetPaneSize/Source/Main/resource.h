@@ -25,6 +25,9 @@
 #define IDC_GRAPH_FRAME                 1052
 #define IDC_BUTTON1                     1053
 #define IDC_DRAW_BTN                    1053
+#define IDC_EDIT1                       1054
+#define IDC_SLIDER1                     1055
+#define IDC_BUTTON2                     1056
 #define ID_VIEW_CUSTOMIZE               32770
 #define ID_VIEW_TOOLBARS                32771
 #define ID_VIEW_DLGBAR                  32792
@@ -35,9 +38,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        155
+#define _APS_NEXT_RESOURCE_VALUE        156
 #define _APS_NEXT_COMMAND_VALUE         32833
-#define _APS_NEXT_CONTROL_VALUE         1054
+#define _APS_NEXT_CONTROL_VALUE         1058
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

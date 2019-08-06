@@ -1084,11 +1084,12 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SetDlg.cpp" />
     <ClCompile Include="Source\Graph\Graph.cpp" />
     <ClCompile Include="Source\Graph\GraphDataColor.cpp" />
     <ClCompile Include="Source\Graph\GraphDataSet.cpp" />
-    <ClCompile Include="Source\Graph\GraphDlg.cpp" />
+    <ClCompile Include="Source\Graph\GraphDlg.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Source\Graph\GraphLegend.cpp" />
     <ClCompile Include="Source\Graph\GraphLegendSet.cpp" />
     <ClCompile Include="Source\Graph\GraphPieLabel.cpp" />
@@ -1106,8 +1107,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="SetDlg.h" />
-    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Source\Main\MainFrm.h" />
+    <ClInclude Include="Source\Main\SetPaneSize.h" />
+    <ClInclude Include="Source\Main\SetPaneSizeDoc.h" />
+    <ClInclude Include="Source\Main\SetPaneSizeView.h" />
+    <ClInclude Include="Source\Main\StdAfx.h" />
+    <ClInclude Include="Source\Main\targetver.h" />
+    <ClInclude Include="Source\Main\WorkspaceBar.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

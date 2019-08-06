@@ -30,7 +30,7 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNCREATE(CSetPaneSizeView, CFormView)
 
 BEGIN_MESSAGE_MAP(CSetPaneSizeView, CFormView)
-	//ON_BN_CLICKED(IDC_BUTTON_SET_DLGBAR_SIZE, OnButtonSetDlgBarSize)
+	ON_BN_CLICKED(IDC_DRAW_BTN, OnButtonSetContainerSize) 
 	//ON_BN_CLICKED(IDC_BUTTON_SET_CONTAINER_SIZE, OnButtonSetContainerSize)
 	//ON_BN_CLICKED(IDC_BTN_SET_HEIGHT_IN_PIXELS, OnBtnSetHeightInPixels)
 	//ON_BN_CLICKED(IDC_BTN_SET_WIDTH_IN_PIXELS, OnBtnSetWidthInPixels)
@@ -51,6 +51,8 @@ CSetPaneSizeView::CSetPaneSizeView()
 	m_nContainerSize = 100;
 	m_nHeightInPixels = 100;
 	m_nWidthInPixels = 100;
+
+	graphComplete = FALSE;
 }
 
 CSetPaneSizeView::~CSetPaneSizeView()
@@ -83,16 +85,17 @@ void CSetPaneSizeView::OnInitialUpdate()
 {
 	// There is only one view ever, so it only needs to do the initial
 	// update once--otherwise the application is  resized needlessly.
-	static BOOL bUpdatedOnce = FALSE;
-	if (bUpdatedOnce)
-		return;
-	bUpdatedOnce = TRUE;
+	//static BOOL bUpdatedOnce = FALSE;
+	//if (bUpdatedOnce)      return;
+	//bUpdatedOnce = TRUE;
 
 	CFormView::OnInitialUpdate();
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();
 
-	graphComplete = FALSE;
+	//OnButtonSetContainerSize();  //tst?
+
+	graphComplete = FALSE;         //不再刷新  >>> 新建
 
 
 }
@@ -173,7 +176,7 @@ void CSetPaneSizeView::OnContextMenu(CWnd*, CPoint point)
 	theApp.ShowPopupMenu (IDR_CONTEXT_MENU, point, this);
 }
 
-#if 0
+#if 1
 
 void CSetPaneSizeView::OnButtonSetDlgBarSize() 
 {
@@ -205,10 +208,10 @@ void CSetPaneSizeView::OnButtonSetContainerSize()
 	//	testGraph->SetXAxisAlignment(270);
 	//	testGraph->SetXAxisAlignment(45);
 	//	testGraph->SetXAxisAlignment(315);
-	testGraph->SetXAxisLabel("Games");
-	testGraph->SetYAxisLabel("Scores");
-	//	testGraph->SetTickLimits(0, 300, 50);
-	testGraph->SetTickLimits(63, 74, 1);
+	testGraph->SetXAxisLabel("X");
+	testGraph->SetYAxisLabel("Y");
+	testGraph->SetTickLimits(0, 300, 50);
+	//testGraph->SetTickLimits(63, 74, 1);
 
 	//set up some series
 	CGraphSeries* series1 = new CGraphSeries();

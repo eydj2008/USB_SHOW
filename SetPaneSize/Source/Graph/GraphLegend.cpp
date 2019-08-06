@@ -74,7 +74,7 @@ int CGraphLegend::GetLegendLength()
 void CGraphLegend::Remove(int dataGroup)
 {
 	POSITION pos;
-	CGraphLegendSet *legendSet;
+	CGraphLegendSet *legendSet=NULL;
 	pos = legendLabels->GetHeadPosition();
 	for(int i = 0; i < dataGroup; i++)
 	{

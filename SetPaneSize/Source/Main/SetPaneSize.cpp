@@ -92,6 +92,14 @@ BOOL CSetPaneSizeApp::InitInstance()
 		RUNTIME_CLASS(CSetPaneSizeView));
 	AddDocTemplate(pDocTemplate);
 
+	//CSingleDocTemplate* pDocTemplate1;
+	//pDocTemplate1 = new CSingleDocTemplate(
+	//	IDR_MAINFRAME,
+	//	//RUNTIME_CLASS(CSetPaneSizeDoc),
+	//	//RUNTIME_CLASS(CMainFrame),       // main SDI frame window
+	//	RUNTIME_CLASS(CSetPaneSizeView));
+	//AddDocTemplate(pDocTemplate1);
+
 	// Parse command line for standard shell commands, DDE, file open
 	CCommandLineInfo cmdInfo;
 	ParseCommandLine(cmdInfo);

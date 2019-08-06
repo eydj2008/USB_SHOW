@@ -183,8 +183,8 @@ void CGraph::DrawGraph(CDC* pDC)
 	pDC->Rectangle(0, 0, graphRect.Width(), graphRect.Height());
 	pDC->SelectObject(pOldBackBrush);
 
-	maxHeight = graphRect.Height() - 20;  //for frame window and status bar
-	maxWidth = graphRect.Width() - 5;  //for frame window
+	maxHeight = graphRect.Height();// - 20;  //for frame window and status bar
+	maxWidth = graphRect.Width();// - 5;  //for frame window
 
 	//draw graph title
 	CFont titleFont;

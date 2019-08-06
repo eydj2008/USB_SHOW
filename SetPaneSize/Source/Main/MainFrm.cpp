@@ -141,6 +141,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndDlgBar.SetIcon (imagesWorkspace.ExtractIcon (1), FALSE);
 
+	//m_wndDlgBar.EnableWindow(TRUE);
+	//m_wndDlgBar.
+
 	BOOL bValidString;
 	CString strMainToolbarTitle;
 	bValidString = strMainToolbarTitle.LoadString (IDS_MAIN_TOOLBAR);
@@ -286,9 +289,7 @@ void CMainFrame::OnUpdateViewWorkspace(CCmdUI* pCmdUI)
 
 void CMainFrame::OnViewDialogBar() 
 {
-	ShowPane (&m_wndDlgBar,
-					!(m_wndDlgBar.IsVisible ()),
-					FALSE, TRUE);
+	ShowPane (&m_wndDlgBar, !(m_wndDlgBar.IsVisible ()), FALSE, TRUE);
 	RecalcLayout ();
 }
 
