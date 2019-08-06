@@ -12,6 +12,8 @@
 
 #include "Graph.h"
 
+#define  NumSeriesVal        3
+
 class CSetPaneSizeView : public CFormView
 {
 protected: // create from serialization only
@@ -25,7 +27,10 @@ public:
 	UINT	m_nHeightInPixels;
 	UINT	m_nWidthInPixels;
 	UINT    graphComplete;
+
+	UINT    iTimes;
 	CGraph* testGraph;
+	CGraphSeries* series[NumSeriesVal];
 
 // Attributes
 public:
@@ -61,6 +66,7 @@ protected:
 	afx_msg void OnBtnSetWidthInPixels();
 	afx_msg void OnContextMenu(CWnd*, CPoint point);
 	afx_msg void OnFilePrintPreview();
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 
 	DECLARE_MESSAGE_MAP()
 };

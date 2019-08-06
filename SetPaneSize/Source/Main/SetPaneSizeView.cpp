@@ -39,6 +39,8 @@ BEGIN_MESSAGE_MAP(CSetPaneSizeView, CFormView)
 	ON_COMMAND(ID_FILE_PRINT, CFormView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, CFormView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, OnFilePrintPreview)
+
+	ON_WM_TIMER()  
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -47,11 +49,12 @@ END_MESSAGE_MAP()
 CSetPaneSizeView::CSetPaneSizeView()
 	: CFormView(CSetPaneSizeView::IDD)
 {
-	m_nSizePercent = 50;
-	m_nContainerSize = 100;
-	m_nHeightInPixels = 100;
-	m_nWidthInPixels = 100;
+	//m_nSizePercent = 50;
+	//m_nContainerSize = 100;
+	//m_nHeightInPixels = 100;
+	//m_nWidthInPixels = 100;
 
+	iTimes        = 0;
 	graphComplete = FALSE;
 }
 
@@ -97,7 +100,9 @@ void CSetPaneSizeView::OnInitialUpdate()
 
 	graphComplete = FALSE;         //不再刷新  >>> 新建
 
+	iTimes        = 0;
 
+	KillTimer(1);  
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -197,6 +202,16 @@ void CSetPaneSizeView::OnButtonSetContainerSize()
 		pMainFrame->SetContainerSize (m_nContainerSize);
 	}
 
+	testGraph = new CGraph(LINE_GRAPH);
+
+	for (int i=0;i<NumSeriesVal;i++)
+	{
+		series[i] = new CGraphSeries();
+	}
+
+	SetTimer(1, 100, NULL); 
+
+#if 0
 	// TODO: Add your command handler code here
 	testGraph = new CGraph(LINE_GRAPH);
 	testGraph->SetGraphTitle("Line Graph");
@@ -254,7 +269,7 @@ void CSetPaneSizeView::OnButtonSetContainerSize()
 
 	graphComplete = TRUE;
 	Invalidate(TRUE);
-
+#endif
 
 }
 
@@ -278,3 +293,91 @@ void CSetPaneSizeView::OnBtnSetWidthInPixels()
 	}
 }
 #endif
+
+
+void CSetPaneSizeView::OnTimer(UINT_PTR nIDEvent)      
+{   
+	
+
+	static UINT N = 0;
+	int i,num=3;
+
+	static int x[NumSeriesVal],y[NumSeriesVal];
+	
+	
+
+	// TODO: Add your message handler code here and/or call default      
+	switch (nIDEvent)      
+	{      
+	case 1:      
+		if (++iTimes > 30)  return;
+
+		//if (iTimes==1)
+		{
+			// 如果收到ID为1的定时器的消息则调用func1函数      
+			
+			testGraph->SetGraphTitle("Line Graph");
+			//	testGraph->SetGraphAlignment(HORIZONTAL_ALIGN);
+			//	testGraph.SetGraphType(1);
+			testGraph->SetXAxisAlignment(0);
+			testGraph->SetXAxisLabel("X");
+			testGraph->SetYAxisLabel("Y");
+			testGraph->SetTickLimits(0, 300, 50);
+			//testGraph->SetTickLimits(63, 74, 1);
+
+			//set up some series
+			
+			//CGraphSeries* series1 = new CGraphSeries();
+			//CGraphSeries* series2 = new CGraphSeries();
+			//CGraphSeries* series3 = new CGraphSeries();
+
+			
+		}
+
+		
+		
+
+        char cstr[3];
+		sprintf_s(cstr,"%02d",iTimes);
+		series[N]->SetLabel(cstr);
+
+		x[N]+=1;
+		y[N]+=5;
+		series[N]->SetData(x[N], y[N]);
+		testGraph->AddSeries(series[0]);
+
+		//N++;
+		//sprintf_s(cstr,"%d",N);
+		//series[N]->SetLabel(cstr);
+		//series[N]->SetData(x[N]++, y[N]+=2);
+		//testGraph->AddSeries(series[1]);
+
+		//N++;
+		//sprintf_s(cstr,"%d",N);
+		//series[N]->SetLabel(cstr);
+		//series[N]->SetData(x[N]++, y[N]+=4);
+		//testGraph->AddSeries(series[2]);
+
+
+		testGraph->SetColor(0, FOREST_GREEN);
+		testGraph->SetColor(1, SKY_BLUE);
+		testGraph->SetColor(2, DUSK);
+
+		//set up legend
+		testGraph->SetLegend(0, "C 1");
+		testGraph->SetLegend(1, "C 2");
+		testGraph->SetLegend(2, "C 3");
+
+		graphComplete = TRUE;
+		Invalidate(TRUE);
+		break;      
+	case 2:      
+		// 如果收到ID为2的定时器的消息则调用func2函数      
+    
+		break;        
+	default:      
+		break;      
+	}      
+
+	//CSetPaneSizeView::OnTimer(nIDEvent);      
+}
