@@ -13,11 +13,112 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
+// 中文(简体，中国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_USB DIALOGEX 0, 0, 321, 91
+STYLE DS_SETFONT | WS_CHILD
+FONT 9, "宋体", 400, 0, 0x0
+BEGIN
+    LTEXT           "TODO: 布局对话栏",IDC_STATIC,126,4,77,8
+    EDITTEXT        IDC_EDIT_VID,21,13,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PID,72,12,40,14,ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_DIALOG_USB, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 76
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // 中文(简体，中国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
 // 英语(美国) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 34, 22, 217, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About SetPaneSize"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "SetPaneSize Application Version 1.0",IDC_STATIC,40,10,119,8
+    LTEXT           "?2007 - 2008 Microsoft Corporation.  All rights reserved.",IDC_STATIC,40,25,122,19
+    DEFPUSHBUTTON   "OK",IDOK,176,6,32,14,WS_GROUP
+END
+
+IDD_SetPaneSize_FORM DIALOGEX 0, 0, 334, 219
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+END
+
+IDD_DLG_BAR DIALOGEX 0, 0, 173, 286
+STYLE DS_SETFONT | WS_CHILD | WS_CLIPSIBLINGS | WS_CLIPCHILDREN
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    LTEXT           "This is a simple dialog bar",IDC_STATIC,7,10,158,17
+    PUSHBUTTON      "Draw",IDC_DRAW_BTN,7,32,50,14
+    EDITTEXT        IDC_EDIT1,75,33,40,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER1,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,7,61,114,17
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_SetPaneSize_FORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 327
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 212
+    END
+
+    IDD_DLG_BAR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 165
+        TOPMARGIN, 10
+        BOTTOMMARGIN, 237
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -137,6 +238,8 @@ BEGIN
             MENUITEM "",                            ID_VIEW_TOOLBARS
         END
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM "USB_HID",                     ID_VIEW_USB
+        MENUITEM "PlotLine",                    ID_VIEW_DLGBAR
     END
     POPUP "&Help"
     BEGIN
@@ -160,7 +263,7 @@ BEGIN
     BEGIN
         MENUITEM "Standard Toolbar",            ID_VIEW_TOOLBAR
         MENUITEM "&Workspace",                  ID_VIEW_WORKSPACE
-        MENUITEM "&DialogBar",                  ID_VIEW_DLGBAR
+        MENUITEM "&DialogBar",                  ID_VIEW_DLGBAR1
         MENUITEM SEPARATOR
         MENUITEM "&Customize...",               ID_VIEW_CUSTOMIZE
     END
@@ -188,39 +291,6 @@ BEGIN
     VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY 
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
-END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Dialog
-//
-
-IDD_ABOUTBOX DIALOGEX 34, 22, 217, 55
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "About SetPaneSize"
-FONT 8, "MS Sans Serif", 0, 0, 0x1
-BEGIN
-    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "SetPaneSize Application Version 1.0",IDC_STATIC,40,10,119,8
-    LTEXT           "?2007 - 2008 Microsoft Corporation.  All rights reserved.",IDC_STATIC,40,25,122,19
-    DEFPUSHBUTTON   "OK",IDOK,176,6,32,14,WS_GROUP
-END
-
-IDD_SetPaneSize_FORM DIALOGEX 0, 0, 334, 219
-STYLE DS_SETFONT | WS_CHILD
-FONT 8, "MS Sans Serif", 0, 0, 0x0
-BEGIN
-END
-
-IDD_DLG_BAR DIALOGEX 0, 0, 173, 286
-STYLE DS_SETFONT | WS_CHILD | WS_CLIPSIBLINGS | WS_CLIPCHILDREN
-FONT 8, "MS Sans Serif", 0, 0, 0x0
-BEGIN
-    LTEXT           "This is a simple dialog bar",IDC_STATIC,7,10,158,17
-    PUSHBUTTON      "Draw",IDC_DRAW_BTN,7,32,50,14
-    EDITTEXT        IDC_EDIT1,75,33,40,14,ES_AUTOHSCROLL
-    CONTROL         "",IDC_SLIDER1,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,7,61,114,17
 END
 
 
@@ -260,33 +330,6 @@ BEGIN
         VALUE "Translation", 0x409, 1200
     END
 END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// DESIGNINFO
-//
-
-#ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO
-BEGIN
-    IDD_SetPaneSize_FORM, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 327
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 212
-    END
-
-    IDD_DLG_BAR, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 165
-        TOPMARGIN, 10
-        BOTTOMMARGIN, 237
-    END
-END
-#endif    // APSTUDIO_INVOKED
 
 
 /////////////////////////////////////////////////////////////////////////////

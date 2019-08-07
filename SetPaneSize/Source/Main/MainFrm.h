@@ -47,6 +47,7 @@ protected:  // control bar embedded members
 	CMFCToolBar		m_wndToolBar;
 	CWorkspaceBar   m_wndWorkSpace;
 	CPaneDialog		m_wndDlgBar;
+	CPaneDialog		m_wndDlgUSB;
 
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
@@ -57,6 +58,8 @@ protected:
 	afx_msg void OnUpdateViewWorkspace(CCmdUI* pCmdUI);
 	afx_msg void OnViewDialogBar();
 	afx_msg void OnUpdateViewDialogBar(CCmdUI* pCmdUI);
+	afx_msg void OnViewDialogUSB();
+	afx_msg void OnUpdateViewDialogUSB(CCmdUI* pCmdUI);
 
 	DECLARE_MESSAGE_MAP()
 

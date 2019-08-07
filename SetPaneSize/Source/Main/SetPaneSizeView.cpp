@@ -207,7 +207,7 @@ void CSetPaneSizeView::OnButtonSetContainerSize()
 
 
 #if 1
-	SetTimer(1, 100, NULL); 
+	SetTimer(1, 10, NULL); 
 
 #else
 	KillTimer(1); 

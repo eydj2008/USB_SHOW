@@ -14,7 +14,7 @@
 
 #define  NumSeriesVal        30    //X轴总点数
 
-typedef enum
+typedef enum                       //显示多少条线
 {
 	Line1Val        = 0U,
 	Line2Val,

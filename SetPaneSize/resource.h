@@ -5,6 +5,7 @@
 #define IDP_OLE_INIT_FAILED             100
 #define IDD_SetPaneSize_FORM            101
 #define IDS_MAIN_TOOLBAR                101
+#define IDD_DIALOG_USB                  103
 #define IDR_MAINFRAME                   128
 #define IDR_SETBARTYPE                  129
 #define IDR_CONTEXT_MENU                130
@@ -28,10 +29,16 @@
 #define IDC_EDIT1                       1054
 #define IDC_SLIDER1                     1055
 #define IDC_BUTTON2                     1056
+#define IDC_EDIT2                       1058
+#define IDC_EDIT_PID                    1058
+#define IDC_EDIT_VID                    1059
 #define ID_VIEW_CUSTOMIZE               32770
 #define ID_VIEW_TOOLBARS                32771
 #define ID_VIEW_DLGBAR                  32792
 #define ID_VIEW_WORKSPACE               32803
+#define ID_VIEW_USB                     32833
+#define ID_VIEW_DLGBAR1                 32834
+#define ID_VIEW_PLOTLINE                32835
 
 // Next default values for new objects
 // 
@@ -39,8 +46,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        156
-#define _APS_NEXT_COMMAND_VALUE         32833
-#define _APS_NEXT_CONTROL_VALUE         1058
+#define _APS_NEXT_COMMAND_VALUE         32836
+#define _APS_NEXT_CONTROL_VALUE         1060
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

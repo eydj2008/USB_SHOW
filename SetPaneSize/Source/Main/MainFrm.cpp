@@ -34,6 +34,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WORKSPACE, OnUpdateViewWorkspace)
 	ON_COMMAND(ID_VIEW_DLGBAR, OnViewDialogBar)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_DLGBAR, OnUpdateViewDialogBar)
+	ON_COMMAND(ID_VIEW_USB,    OnViewDialogUSB)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_USB, OnUpdateViewDialogUSB)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -83,17 +85,18 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	lstBasicCommands.AddTail (ID_EDIT_UNDO);
 	lstBasicCommands.AddTail (ID_APP_ABOUT);
 	lstBasicCommands.AddTail (ID_VIEW_TOOLBAR);
+	//lstBasicCommands.AddTail (ID_VIEW_USB);
 	lstBasicCommands.AddTail (ID_VIEW_CUSTOMIZE);
 
 	CMFCToolBar::SetBasicCommands (lstBasicCommands);
 
-	if (!m_wndMenuBar.Create (this))
+	if (!m_wndMenuBar.Create (this))              //自动缩进菜单 下拉箭头 右边子菜单也没有了
 	{
 		TRACE0("Failed to create menubar\n");
 		return -1;      // fail to create
 	}
-
 	m_wndMenuBar.SetPaneStyle(m_wndMenuBar.GetPaneStyle() | CBRS_SIZE_DYNAMIC);
+
 
 	// Detect color depth. 256 color toolbars can be used in the
 	// high or true color modes only (bits per pixel is > 8):
@@ -109,6 +112,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create toolbar\n");
 		return -1;      // fail to create
 	}
+
 	if (!m_wndStatusBar.Create(this) ||
 		!m_wndStatusBar.SetIndicators(indicators,
 		  sizeof(indicators)/sizeof(UINT)))
@@ -130,6 +134,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndWorkSpace.SetIcon (imagesWorkspace.ExtractIcon (0), FALSE);
 
+	//模拟 LINE DLG
 	if (!m_wndDlgBar.Create (_T("DialogBar"), this, TRUE, 
 							 MAKEINTRESOURCE (IDD_DLG_BAR), 
 							 WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT | CBRS_FLOAT_MULTI, 
@@ -142,7 +147,18 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndDlgBar.SetIcon (imagesWorkspace.ExtractIcon (1), FALSE);
 
 	//m_wndDlgBar.EnableWindow(TRUE);
-	//m_wndDlgBar.
+
+	// USB DLG
+	if (!m_wndDlgUSB.Create (_T("DialogUSB"), this, TRUE, 
+							MAKEINTRESOURCE (IDD_DIALOG_USB), 
+							WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT | CBRS_FLOAT_MULTI, 
+							ID_VIEW_USB))
+	{
+		TRACE0("Failed to create Dialog USB\n");
+		return FALSE;      // fail to create
+	}
+
+	m_wndDlgUSB.SetIcon (imagesWorkspace.ExtractIcon (1), FALSE);
 
 	BOOL bValidString;
 	CString strMainToolbarTitle;
@@ -150,17 +166,19 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndToolBar.SetWindowText (strMainToolbarTitle);
 	// TODO: Delete these three lines if you don't want the toolbar to
 	//  be dockable
-	m_wndMenuBar.EnableDocking(CBRS_ALIGN_ANY);
+	//m_wndMenuBar.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndWorkSpace.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndDlgBar.EnableDocking(CBRS_ALIGN_ANY);
+	m_wndDlgUSB.EnableDocking(CBRS_ALIGN_ANY);
+
 	EnableDocking(CBRS_ALIGN_ANY);
 	EnableAutoHidePanes(CBRS_ALIGN_ANY);
-	DockPane(&m_wndMenuBar);
+	//DockPane(&m_wndMenuBar);
 	DockPane(&m_wndToolBar);
 	DockPane (&m_wndWorkSpace);
 	m_wndDlgBar.DockToWindow (&m_wndWorkSpace, CBRS_ALIGN_BOTTOM);
-
+	m_wndDlgUSB.DockToWindow (&m_wndWorkSpace, CBRS_ALIGN_BOTTOM);
 	m_wndToolBar.EnableCustomizeButton (TRUE, ID_VIEW_CUSTOMIZE, _T("Customize..."));
 	return 0;
 }
@@ -293,9 +311,20 @@ void CMainFrame::OnViewDialogBar()
 	RecalcLayout ();
 }
 
+void CMainFrame::OnViewDialogUSB() 
+{
+	ShowPane (&m_wndDlgUSB, !(m_wndDlgUSB.IsVisible ()), FALSE, TRUE);
+	RecalcLayout ();
+}
+
 void CMainFrame::OnUpdateViewDialogBar(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck (m_wndDlgBar.IsVisible ());
+}
+
+void CMainFrame::OnUpdateViewDialogUSB(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck (m_wndDlgUSB.IsVisible ());
 }
 
 BOOL CMainFrame::FindInternalDivider (CDockablePane* pBar, 

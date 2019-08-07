@@ -14,8 +14,8 @@
 	#error include 'stdafx.h' before including this file for PCH
 #endif
 
-#include "resource.h"       // main symbols
-
+#include "..\..\resource.h"       // main symbols  使用项目下 的 resource.h
+//#include "resource.h"           // 使用main  下  \Source\Main
 
 
 /////////////////////////////////////////////////////////////////////////////
