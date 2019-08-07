@@ -102,6 +102,9 @@ void CSetPaneSizeView::OnInitialUpdate()
 
 	iTimes        = 0;
 
+	//delete series;
+	//delete testGraph;
+
 	KillTimer(1);  
 }
 
@@ -196,28 +199,24 @@ void CSetPaneSizeView::OnButtonSetDlgBarSize()
 void CSetPaneSizeView::OnButtonSetContainerSize() 
 {
 	UpdateData ();	
-	CMainFrame* pMainFrame = DYNAMIC_DOWNCAST (CMainFrame, GetTopLevelFrame());
-	if (pMainFrame != NULL)
-	{
-		pMainFrame->SetContainerSize (m_nContainerSize);
-	}
+	//CMainFrame* pMainFrame = DYNAMIC_DOWNCAST (CMainFrame, GetTopLevelFrame());
+	//if (pMainFrame != NULL)
+	//{
+	//	pMainFrame->SetContainerSize (m_nContainerSize);
+	//}
 
-	testGraph = new CGraph(LINE_GRAPH);
 
-	for (int i=0;i<NumSeriesVal;i++)
-	{
-		series[i] = new CGraphSeries();
-	}
-
+#if 1
 	SetTimer(1, 100, NULL); 
 
-#if 0
+#else
+	KillTimer(1); 
 	// TODO: Add your command handler code here
 	testGraph = new CGraph(LINE_GRAPH);
 	testGraph->SetGraphTitle("Line Graph");
 	//	testGraph->SetGraphAlignment(HORIZONTAL_ALIGN);
 
-	//	testGraph.SetGraphType(1);
+    //testGraph->SetGraphType(1);
 	testGraph->SetXAxisAlignment(0);
 	//	testGraph->SetXAxisAlignment(90);
 	//	testGraph->SetXAxisAlignment(270);
@@ -225,47 +224,61 @@ void CSetPaneSizeView::OnButtonSetContainerSize()
 	//	testGraph->SetXAxisAlignment(315);
 	testGraph->SetXAxisLabel("X");
 	testGraph->SetYAxisLabel("Y");
-	testGraph->SetTickLimits(0, 300, 50);
+	testGraph->SetTickLimits(0, 300, 10);
 	//testGraph->SetTickLimits(63, 74, 1);
 
 	//set up some series
 	CGraphSeries* series1 = new CGraphSeries();
 	CGraphSeries* series2 = new CGraphSeries();
 	CGraphSeries* series3 = new CGraphSeries();
+	CGraphSeries* series4 = new CGraphSeries();
+	CGraphSeries* series5 = new CGraphSeries();
+
 	series1->SetLabel("day 1");
 	series2->SetLabel("day 2");
 	series3->SetLabel("day 3");
-	//	series1->SetData(0, 150);
-	//	series1->SetData(1, 202);
-	//	series1->SetData(2, 230);
-	//	series2->SetData(0, 199);
+	series4->SetLabel("day 4");
+	series5->SetLabel("day 5");
+
+	series1->SetData(0, 150);
+	//series1->SetData(1, 202);
+	//series1->SetData(2, 230);
+	series2->SetData(0, 199);
 	//	series2->SetData(1, 140);
 	//	series2->SetData(2, 279);
-	//	series3->SetData(0, 204);
+	series3->SetData(0, 204);
 	//	series3->SetData(1, 221);
 	//	series3->SetData(2, 208);
-	series1->SetData(0, 64);
-	series1->SetData(1, 72);
-	series1->SetData(2, 70);
-	series2->SetData(0, 63);
-	series2->SetData(1, 68);
-	series2->SetData(2, 71);
-	series3->SetData(0, 74);
-	series3->SetData(1, 69);
-	series3->SetData(2, 66);
+
+	series4->SetData(0, 254);
+	series5->SetData(0, 284);
+
+	//series1->SetData(3, 90);
+	//series1->SetData(4, 70);
+	//series1->SetData(5, 110);
+
+	//series2->SetData(0, 63);
+	//series2->SetData(10, 68);
+	//series2->SetData(20, 71);
+
+	//series3->SetData(0, 74);
+	//series3->SetData(10, 69);
+	//series3->SetData(20, 66);
 
 	testGraph->AddSeries(series1);
 	testGraph->AddSeries(series2);
 	testGraph->AddSeries(series3);
+	testGraph->AddSeries(series4);
+	testGraph->AddSeries(series5);
 
 	testGraph->SetColor(0, FOREST_GREEN);
 	testGraph->SetColor(1, SKY_BLUE);
 	testGraph->SetColor(2, DUSK);
 
 	//set up legend
-	testGraph->SetLegend(0, "game 1");
-	testGraph->SetLegend(1, "game 2");
-	testGraph->SetLegend(2, "game 3");
+	testGraph->SetLegend(0, "C 1");
+	testGraph->SetLegend(1, "C 2");
+	testGraph->SetLegend(2, "C 3");
 
 	graphComplete = TRUE;
 	Invalidate(TRUE);
@@ -297,56 +310,75 @@ void CSetPaneSizeView::OnBtnSetWidthInPixels()
 
 void CSetPaneSizeView::OnTimer(UINT_PTR nIDEvent)      
 {   
-	
-
 	static UINT N = 0;
 	int i,num=3;
+	int timeval = 1;
 
-	static int x[NumSeriesVal],y[NumSeriesVal];
+	static int x,y;
 	
-	
-
 	// TODO: Add your message handler code here and/or call default      
 	switch (nIDEvent)      
 	{      
-	case 1:      
-		if (++iTimes > 30)  return;
-
-		//if (iTimes==1)
+	case 1:   
+#if 1
+		if (iTimes == NumSeriesVal)  
 		{
-			// 如果收到ID为1的定时器的消息则调用func1函数      
 			
+			//for (i=0;i<NumSeriesVal;i++)
+			//{
+			//	delete series[i];
+			//}
+
+			//delete testGraph;
+			return;
+		}
+		if (iTimes <= NumSeriesVal) 
+		{
+			iTimes++;
+		}
+		else
+		{
+
+		    return;
+		}
+
+		if (iTimes==1)
+		{
+			y = 0;
+			N = 0;
+			// 如果收到ID为1的定时器的消息则调用func1函数      
+			testGraph = new CGraph(LINE_GRAPH);
+
+			//for (i=0;i<NumSeriesVal;i++)
+			{
+				//series[i] = new CGraphSeries();
+			}
+
 			testGraph->SetGraphTitle("Line Graph");
 			//	testGraph->SetGraphAlignment(HORIZONTAL_ALIGN);
 			//	testGraph.SetGraphType(1);
 			testGraph->SetXAxisAlignment(0);
 			testGraph->SetXAxisLabel("X");
 			testGraph->SetYAxisLabel("Y");
-			testGraph->SetTickLimits(0, 300, 50);
+			testGraph->SetTickLimits(0, 300, 10);
 			//testGraph->SetTickLimits(63, 74, 1);
-
-			//set up some series
-			
-			//CGraphSeries* series1 = new CGraphSeries();
-			//CGraphSeries* series2 = new CGraphSeries();
-			//CGraphSeries* series3 = new CGraphSeries();
-
-			
 		}
 
-		
-		
+		//N = iTimes;
 
-        char cstr[3];
-		sprintf_s(cstr,"%02d",iTimes);
-		series[N]->SetLabel(cstr);
+		series[N] = new CGraphSeries();
 
-		x[N]+=1;
-		y[N]+=5;
-		series[N]->SetData(x[N], y[N]);
-		testGraph->AddSeries(series[0]);
+		char cstr[3];
+		sprintf_s(cstr,"%02d",N);
+		series[N]->SetLabel(cstr);   //X
 
-		//N++;
+		y+=10;
+		series[N]->SetData(0, y);   //Y
+
+		testGraph->AddSeries(series[N]);
+
+		N++;
+
 		//sprintf_s(cstr,"%d",N);
 		//series[N]->SetLabel(cstr);
 		//series[N]->SetData(x[N]++, y[N]+=2);
@@ -359,17 +391,15 @@ void CSetPaneSizeView::OnTimer(UINT_PTR nIDEvent)
 		//testGraph->AddSeries(series[2]);
 
 
+		
 		testGraph->SetColor(0, FOREST_GREEN);
 		testGraph->SetColor(1, SKY_BLUE);
 		testGraph->SetColor(2, DUSK);
-
-		//set up legend
-		testGraph->SetLegend(0, "C 1");
-		testGraph->SetLegend(1, "C 2");
-		testGraph->SetLegend(2, "C 3");
+		
 
 		graphComplete = TRUE;
-		Invalidate(TRUE);
+		Invalidate(TRUE);            //刷新显示曲线
+#endif
 		break;      
 	case 2:      
 		// 如果收到ID为2的定时器的消息则调用func2函数      

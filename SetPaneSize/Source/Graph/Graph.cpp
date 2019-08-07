@@ -376,7 +376,7 @@ void CGraph::DrawAxis(CDC* pDC)
 	CFont sideFont, axisFont, dummyFont;
 	int charWidth, labelHeight;
 	double tickScale;
-	int tickXLocation, tickYLocation;
+	int tickXLocation=0, tickYLocation=0;
 	int seriesSpace;
 	CFont* pOldFont;
 	int x, y;
@@ -3578,7 +3578,7 @@ void CGraph::PrintAxis(CDC *pDC)
 						pDC->LineTo(tickXLocation,yApexPoint);
 
 						COLORREF gridLineColor;
-						CPen* pOldPen;
+						CPen* pOldPen=NULL;
 						if(graphHasGridLines)
 						{
 							//draw grid lines
@@ -4320,7 +4320,7 @@ void CGraph::DrawLineSeries(CDC* pDC)
 	CGraphSeries* tmpSeries;
 	int s;
 
-	int lastXLoc, lastYLoc;
+	int lastXLoc=0, lastYLoc=0;
 	if(graphAlignment)
 	{
 		for(s = 0; s < seriesSize; s++)
@@ -4441,24 +4441,24 @@ void CGraph::DrawPieSeries(CDC* pDC)
 {
 	double dataSum = 0.00;  //for storing cumulative sum
 	double labelData = 0.00;
-	int lastXLocation, lastYLocation;
-	int newXLocation, newYLocation;
+	int lastXLocation=0, lastYLocation=0;
+	int newXLocation=0, newYLocation=0;
 	int labelXLocation, labelYLocation;
 	double percent = 0.00;
 	double labelPercent = 0.00;
-	int degrees;
-	int labelDegrees;
+	int degrees=0;
+	int labelDegrees=0;
 	double totalSum = 0.00;
-	int deltaXY;
-	int labelDeltaXY;
-	int radius;
+	int deltaXY=0;
+	int labelDeltaXY=0;
+	int radius=0;
 	POSITION pos;
 	CGraphSeries* tmpSeries;
-	int seriesSpace;
-	int labelLineXStart, labelLineYStart;
-	int labelLineXEnd, labelLineYEnd;
-	int maxLabelWidth;
-	int maxLabelHeight;
+	int seriesSpace=0;
+	int labelLineXStart=0, labelLineYStart=0;
+	int labelLineXEnd=0, labelLineYEnd=0;
+	int maxLabelWidth=0;
+	int maxLabelHeight=0;
 	TEXTMETRIC tm;
 	int s = 0;
 		
@@ -4744,8 +4744,8 @@ void CGraph::DrawScatterSeries(CDC* pDC)
 	//right.  We will use the bounds to see spacing from apex points and then
 	//scale so any point can be plotted inside
 
-	double yAxisScale, xAxisScale;
-	int tickXLocation, tickYLocation;
+	double yAxisScale=0.0, xAxisScale=0.0;
+	int tickXLocation=0, tickYLocation=0;
 
 	//multiply each value by 1.00 to force result into a double value, and therefore
 	//make it more accurate in it's plot location.
@@ -5148,7 +5148,7 @@ void CGraph::DrawXYLineSeries(CDC* pDC)
 	CGraphSeries* tmpSeries;
 	int s;
 
-	int lastXLoc, lastYLoc;
+	int lastXLoc=0, lastYLoc=0;
 	if(graphAlignment)
 	{
 		for(s = 0; s < seriesSize; s++)
@@ -6656,7 +6656,7 @@ void CGraph::PrintLineSeries(CDC* pDC)
 	CGraphSeries* tmpSeries;
 	int s;
 
-	int lastXLoc, lastYLoc;
+	int lastXLoc=0, lastYLoc=0;
 	if(graphAlignment)
 	{
 		for(s = 0; s < seriesSize; s++)
@@ -6787,23 +6787,23 @@ void CGraph::PrintPieSeries(CDC* pDC)
 	CGraphSeries* tmpSeries;
 
 	double dataSum = 0.00;  //for storing cumulative sum
-	int lastXLocation, lastYLocation;
-	int newXLocation, newYLocation;
+	int lastXLocation=0, lastYLocation=0;
+	int newXLocation=0, newYLocation=0;
 	double percent = 0.00;
-	int degrees;
+	int degrees=0;
 	double totalSum = 0.00;
-	int deltaXY;
-	int radius;
+	int deltaXY=0;
+	int radius=0;
 
 	double labelData = 0.00;
 	int labelXLocation, labelYLocation;
 	double labelPercent = 0.00;
-	int labelDegrees;
-	int labelDeltaXY;
-	int labelLineXStart, labelLineYStart;
-	int labelLineXEnd, labelLineYEnd;
-	int maxLabelWidth;
-	int maxLabelHeight;
+	int labelDegrees=0;
+	int labelDeltaXY=0;
+	int labelLineXStart=0, labelLineYStart=0;
+	int labelLineXEnd=0, labelLineYEnd=0;
+	int maxLabelWidth=0;
+	int maxLabelHeight=0;
 	TEXTMETRIC tm;
 		
 	lastXLocation = 0;
@@ -7481,7 +7481,7 @@ void CGraph::PrintXYLineSeries(CDC* pDC)
 	CGraphSeries* tmpSeries;
 	int s;
 
-	int lastXLoc, lastYLoc;
+	int lastXLoc=0, lastYLoc=0;
 	if(graphAlignment)
 	{
 		for(s = 0; s < seriesSize; s++)
@@ -8868,7 +8868,7 @@ void CGraph::RemoveSeries(CString label)
 void CGraph::RemoveColor(int dataGroup)
 {
 	POSITION pos;
-	CGraphDataColor* dataColor;
+	CGraphDataColor* dataColor=NULL;
 	pos = colorList->GetHeadPosition();
 	for(int i = 0; i < dataGroup; i++)
 	{

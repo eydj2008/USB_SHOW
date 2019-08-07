@@ -378,7 +378,7 @@ void CMainFrame::SetDlgBarSizeInContainer (UINT nSize)
 	}
 	if (!bResult || pContainer == NULL || pDivider == NULL)
 	{
-		AfxMessageBox (_T ("The DialogBar is not docked."));
+		//AfxMessageBox (_T ("The DialogBar is not docked."));
 		return;
 	}
 
@@ -425,7 +425,7 @@ void CMainFrame::SetDlgBarHeightInPixels (UINT nHeight)
 	}
 	if (!bResult || pContainer == NULL || pDivider == NULL)
 	{
-		AfxMessageBox (_T ("The DialogBar is not docked."));
+		//AfxMessageBox (_T ("The DialogBar is not docked."));
 		return;
 	}
 
@@ -484,7 +484,7 @@ void CMainFrame::SetDlgBarWidthInPixels (UINT nWidth)
 	}
 	if (!bResult || pContainer == NULL || pDivider == NULL)
 	{
-		AfxMessageBox (_T ("The DialogBar is not docked."));
+		//AfxMessageBox (_T ("The DialogBar is not docked."));
 		return;
 	}
 

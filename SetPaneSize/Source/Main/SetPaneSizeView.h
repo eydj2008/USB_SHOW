@@ -12,7 +12,7 @@
 
 #include "Graph.h"
 
-#define  NumSeriesVal        3
+#define  NumSeriesVal        30
 
 class CSetPaneSizeView : public CFormView
 {
@@ -29,8 +29,10 @@ public:
 	UINT    graphComplete;
 
 	UINT    iTimes;
+	//CGraph  m_Graph;
 	CGraph* testGraph;
 	CGraphSeries* series[NumSeriesVal];
+	//CGraphSeries* series1;
 
 // Attributes
 public:
