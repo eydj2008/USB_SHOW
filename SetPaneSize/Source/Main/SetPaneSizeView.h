@@ -12,7 +12,17 @@
 
 #include "Graph.h"
 
-#define  NumSeriesVal        30
+#define  NumSeriesVal        30    //XÖá×ÜµãÊý
+
+typedef enum
+{
+	Line1Val        = 0U,
+	Line2Val,
+	Line3Val,
+	Line4Val,
+	Line5Val,
+
+} Type_Line;
 
 class CSetPaneSizeView : public CFormView
 {

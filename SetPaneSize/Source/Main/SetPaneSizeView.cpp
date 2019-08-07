@@ -310,7 +310,7 @@ void CSetPaneSizeView::OnBtnSetWidthInPixels()
 
 void CSetPaneSizeView::OnTimer(UINT_PTR nIDEvent)      
 {   
-	static UINT N = 0;
+	//static UINT x = 0;
 	int i,num=3;
 	int timeval = 1;
 
@@ -345,14 +345,9 @@ void CSetPaneSizeView::OnTimer(UINT_PTR nIDEvent)
 		if (iTimes==1)
 		{
 			y = 0;
-			N = 0;
+			x = 0;
 			// 如果收到ID为1的定时器的消息则调用func1函数      
 			testGraph = new CGraph(LINE_GRAPH);
-
-			//for (i=0;i<NumSeriesVal;i++)
-			{
-				//series[i] = new CGraphSeries();
-			}
 
 			testGraph->SetGraphTitle("Line Graph");
 			//	testGraph->SetGraphAlignment(HORIZONTAL_ALIGN);
@@ -361,40 +356,34 @@ void CSetPaneSizeView::OnTimer(UINT_PTR nIDEvent)
 			testGraph->SetXAxisLabel("X");
 			testGraph->SetYAxisLabel("Y");
 			testGraph->SetTickLimits(0, 300, 10);
+			//testGraph->SetGridLines(TRUE);
 			//testGraph->SetTickLimits(63, 74, 1);
+			testGraph->SetbackColor(DARK_GREY);   //WHITE BLACK  DARK_GREY GREY
+
+			///DrawGraph   backColor
 		}
 
-		//N = iTimes;
+		//x = iTimes;
 
-		series[N] = new CGraphSeries();
+		series[x] = new CGraphSeries();
 
 		char cstr[3];
-		sprintf_s(cstr,"%02d",N);
-		series[N]->SetLabel(cstr);   //X
+		sprintf_s(cstr,"%02d",x);
+		series[x]->SetLabel(cstr);   //X
 
-		y+=10;
-		series[N]->SetData(0, y);   //Y
+		y+=5;
 
-		testGraph->AddSeries(series[N]);
+		series[x]->SetData(Line1Val, y);      //Y
+		series[x]->SetData(Line2Val, y+30);   //Y
+		series[x]->SetData(Line3Val, y+60);   //Y
 
-		N++;
+		testGraph->AddSeries(series[x]);
 
-		//sprintf_s(cstr,"%d",N);
-		//series[N]->SetLabel(cstr);
-		//series[N]->SetData(x[N]++, y[N]+=2);
-		//testGraph->AddSeries(series[1]);
-
-		//N++;
-		//sprintf_s(cstr,"%d",N);
-		//series[N]->SetLabel(cstr);
-		//series[N]->SetData(x[N]++, y[N]+=4);
-		//testGraph->AddSeries(series[2]);
-
-
+		x++;
 		
-		testGraph->SetColor(0, FOREST_GREEN);
-		testGraph->SetColor(1, SKY_BLUE);
-		testGraph->SetColor(2, DUSK);
+		testGraph->SetColor(Line1Val, FOREST_GREEN);
+		testGraph->SetColor(Line2Val, SKY_BLUE);
+		testGraph->SetColor(Line3Val, DUSK);
 		
 
 		graphComplete = TRUE;

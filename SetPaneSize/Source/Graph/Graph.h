@@ -122,6 +122,8 @@ private:
 	int p_topYTick;
 	int p_rightXTick;
 
+	COLORREF backColor;
+
 
 // Operations
 public:
@@ -142,6 +144,7 @@ public:
 	void SetGraphAlignment(int alignment);  //0 - vertical, 1 horizontal
 	void SetTickLimits(int minTick, int maxTick, int tickStep);
 	void SetColor(int dataGroup, COLORREF groupColor);
+	void SetbackColor(COLORREF  color);
 	void RemoveSeries(CString label);
 	void RemoveColor(int dataGroup);
 	void RemoveAllSeries();

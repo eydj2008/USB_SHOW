@@ -166,6 +166,14 @@ COLORREF CGraph::GetColor(int dataGroup)
 	return dataColor->GetColor();	
 }
 
+void CGraph::SetbackColor(COLORREF  color)
+{
+	backColor = color;//RGB(255,255,255); 
+}
+
+
+
+
 void CGraph::DrawGraph(CDC* pDC)
 {
 	CString tickLabel;
@@ -175,8 +183,8 @@ void CGraph::DrawGraph(CDC* pDC)
 	TEXTMETRIC	tm;
 
 	//reset graph to be clear background
-	COLORREF backColor;
-	backColor = RGB(255,255,255);  //replace with desired background color
+	
+	//COLORREF backColor = RGB(255,255,255);  //replace with desired background color
 	CBrush backBrush (backColor);
 	CBrush* pOldBackBrush;
 	pOldBackBrush = pDC->SelectObject(&backBrush);
