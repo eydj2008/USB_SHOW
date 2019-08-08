@@ -34,6 +34,8 @@ BEGIN_MESSAGE_MAP(CWork_DLGUSB, CDialog)
 	ON_WM_PAINT()
 	ON_WM_CREATE()
 	ON_WM_SIZE()
+	ON_BN_CLICKED(IDC_BUTTON_CON, &CWork_DLGUSB::OnBnClickedButtonCon)
+	ON_BN_CLICKED(IDC_BUTTON_Download, &CWork_DLGUSB::OnBnClickedButtonDownload)
 END_MESSAGE_MAP()
 
 
@@ -58,13 +60,7 @@ BOOL CWork_DLGUSB::OnInitDialog()
 
 	// TODO:  在此添加额外的初始化
 
-	UINT vid;
-	UINT pid;
-	sscanf(stringEditBoxUSBVID, "%X", &vid);
-	sscanf(stringEditBoxUSBPID, "%X", &pid);
-	// Update the screen with what VID and PID we have read.
-	stringEditBoxUSBVID.FormatMessage("0x%1!X!",vid);
-	stringEditBoxUSBPID.FormatMessage("0x%1!X!",pid);
+	
 
 	//UpdateData(false);
 
@@ -99,4 +95,28 @@ void CWork_DLGUSB::OnSize(UINT nType, int cx, int cy)
 	// TODO: 在此处添加消息处理程序代码
 
 
+}
+
+
+void CWork_DLGUSB::OnBnClickedButtonCon()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	UpdateData(TRUE);
+
+	UINT vid;
+	UINT pid;
+
+	sscanf(stringEditBoxUSBVID, "%X", &vid);
+	sscanf(stringEditBoxUSBPID, "%X", &pid);
+	// Update the screen with what VID and PID we have read.
+	stringEditBoxUSBVID.FormatMessage("0x%1!X!",vid);
+	stringEditBoxUSBPID.FormatMessage("0x%1!X!",pid);
+
+
+}
+
+
+void CWork_DLGUSB::OnBnClickedButtonDownload()
+{
+	// TODO: 在此添加控件通知处理程序代码
 }
