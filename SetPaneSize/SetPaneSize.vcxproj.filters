@@ -103,6 +103,9 @@
     <ClCompile Include="Source\Main\WorkUsbHid.cpp">
       <Filter>Source Files\Main</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Main\Work_DLGUSB.cpp">
+      <Filter>Source Files\Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -130,6 +133,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Main\WorkUsbHid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Main\Work_DLGUSB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

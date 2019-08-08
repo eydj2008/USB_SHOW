@@ -36,6 +36,13 @@ BEGIN
     PUSHBUTTON      "Button3",IDC_BUTTON3,137,35,50,14
 END
 
+IDD_DIALOG_USB2 DIALOGEX 0, 0, 319, 108
+STYLE DS_SETFONT | WS_CHILD
+FONT 9, "ËÎÌו", 400, 0, 0x0
+BEGIN
+    LTEXT           "USB2",IDC_STATIC,1,3,77,8
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -48,6 +55,11 @@ BEGIN
     IDD_DIALOG_USB, DIALOG
     BEGIN
         BOTTOMMARGIN, 76
+    END
+
+    IDD_DIALOG_USB2, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 101
     END
 END
 #endif    // APSTUDIO_INVOKED

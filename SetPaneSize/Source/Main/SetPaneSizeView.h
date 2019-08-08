@@ -32,6 +32,7 @@ protected: // create from serialization only
 
 public:
 	enum { IDD = IDD_SetPaneSize_FORM };
+	//enum { IDD = IDD_DIALOG_USB };
 	UINT	m_nSizePercent;
 	UINT	m_nContainerSize;
 	UINT	m_nHeightInPixels;
@@ -43,10 +44,9 @@ public:
 	CGraph* testGraph;
 	CGraphSeries* series[NumSeriesVal];
 	//CGraphSeries* series1;
-public:
-	//enum { IDD = IDD_DIALOG_USB };
-	CString stringEditBoxUSBVID;
-	CString stringEditBoxUSBPID;
+
+	
+	
 
 // Attributes
 public:

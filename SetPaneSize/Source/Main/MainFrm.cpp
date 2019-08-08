@@ -143,7 +143,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	
 
 	//-----------------------------------------------------------------------------------------------------------
-	if (!m_wndWorkUsbHid.Create (_T("View  2"), this, CRect (100, 100, 300, 300),
+	if (!m_wndWorkUsbHid.Create (_T("USB HID"), this, CRect (100, 100, 300, 300),
 		TRUE, ID_VIEW_USB2,
 		WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT | CBRS_FLOAT_MULTI))
 	{
@@ -170,7 +170,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	// ///USB DLG
 	if (!m_wndDlgUSB.Create (_T("DialogUSB"), this, TRUE, 
-							MAKEINTRESOURCE (IDD_DIALOG_USB), 
+							MAKEINTRESOURCE (IDD_DIALOG_USB2), 
 							WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT | CBRS_FLOAT_MULTI, 
 							ID_VIEW_USB))
 	{
@@ -200,7 +200,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	DockPane(&m_wndMenuBar);
 	DockPane(&m_wndToolBar);
 	DockPane (&m_wndWorkSpace);
-	//DockPane (&m_wndDlgUSB);
+	DockPane (&m_wndDlgUSB);
 	DockPane (&m_wndWorkUsbHid);
 
 	m_wndDlgBar.DockToWindow (&m_wndWorkSpace, CBRS_ALIGN_RIGHT);

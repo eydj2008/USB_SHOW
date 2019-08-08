@@ -8,6 +8,9 @@
 // See these sources for detailed information regarding the
 // Microsoft Foundation Classes product.
 
+//  UpdateData(false)是将变量的值传到控件，表示对话框正在初始化. UpdateData()
+//	UpdateData(TRUE)是从控件中取值到关联的变量, 表示数据正在获取
+
 #include "stdafx.h"
 #include "SetPaneSize.h"
 
@@ -63,8 +66,7 @@ CSetPaneSizeView::CSetPaneSizeView()
 	iTimes        = 0;
 	graphComplete = FALSE;
 
-	stringEditBoxUSBVID = "0x28BD";
-	stringEditBoxUSBPID = "0x1000";
+	
 }
 
 CSetPaneSizeView::~CSetPaneSizeView()
@@ -212,8 +214,7 @@ void CSetPaneSizeView::OnContextMenu(CWnd*, CPoint point)
 
 void CSetPaneSizeView::OnButtonConnect() 
 {
-	UINT vid;
-	UINT pid;
+	
 
 	UpdateData ();
 	CMainFrame* pMainFrame = DYNAMIC_DOWNCAST (CMainFrame, GetTopLevelFrame());
@@ -222,11 +223,7 @@ void CSetPaneSizeView::OnButtonConnect()
 	//	pMainFrame->SetDlgBarSizeInContainer (m_nSizePercent);
 	//}
 
-	sscanf(stringEditBoxUSBVID, "%X", &vid);
-	sscanf(stringEditBoxUSBPID, "%X", &pid);
-	// Update the screen with what VID and PID we have read.
-	stringEditBoxUSBVID.FormatMessage("0x%1!X!",vid);
-	stringEditBoxUSBPID.FormatMessage("0x%1!X!",pid);
+	MessageBox (_T ("OnButtonConnect")); 
 
 }
 
@@ -328,6 +325,7 @@ void CSetPaneSizeView::OnButtonDrawClr()
 	//{
 	//	pMainFrame->SetDlgBarHeightInPixels (m_nHeightInPixels);
 	//}
+	MessageBox (_T ("OnButtonDrawClr"));
 }
 
 
@@ -339,6 +337,8 @@ void CSetPaneSizeView::OnButtonDownload()
 	//{
 	//	pMainFrame->SetDlgBarHeightInPixels (m_nHeightInPixels);
 	//}
+
+	MessageBox (_T ("OnButtonDownload"));
 }
 
 void CSetPaneSizeView::OnBtnSetWidthInPixels() 

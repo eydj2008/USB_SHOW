@@ -14,6 +14,8 @@
 #define IDB_TOOLBAR256                  151
 #define IDD_DLG_BAR                     154
 #define IDD_ABOUTBOX                    999
+#define IDD_DIALOG_USB2                 1000
+#define IDD_DIALOG_USB3                 1001
 #define IDC_COMPANY_URL                 1041
 #define IDC_EDIT_SIZE                   1042
 #define IDC_EDIT_WIDTH                  1043
@@ -31,10 +33,16 @@
 #define IDC_BUTTON_Download             1056
 #define IDC_BUTTON_CLR                  1057
 #define IDC_EDIT2                       1058
-#define IDC_EDIT_USB_PID                1059
-#define IDC_EDIT_USB_VID                1060
+
+#define IDC_EDIT_USB_PID                1060
+#define IDC_EDIT_USB_VID                1061
+
 #define IDC_BUTTON2                     1070
 #define IDC_BUTTON3                     1071
+
+#define IDC_EDIT_PID                    1080
+#define IDC_EDIT_VID                    1081
+
 #define ID_VIEW_CUSTOMIZE               32770
 #define ID_VIEW_TOOLBARS                32771
 #define ID_VIEW_DLGBAR                  32792
@@ -51,7 +59,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        156
 #define _APS_NEXT_COMMAND_VALUE         32837
-#define _APS_NEXT_CONTROL_VALUE         1061
+#define _APS_NEXT_CONTROL_VALUE         1062
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif
