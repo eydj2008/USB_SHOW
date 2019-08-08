@@ -40,6 +40,8 @@ BEGIN_MESSAGE_MAP(CWork_DLGUSB, CDialog)
 	ON_WM_PAINT()
 	ON_WM_CREATE()
 	ON_WM_SIZE()
+	ON_WM_TIMER()
+
 	ON_BN_CLICKED(IDC_BUTTON_CON, &CWork_DLGUSB::OnBnClickedButtonCon)
 	ON_BN_CLICKED(IDC_BUTTON_Download, &CWork_DLGUSB::OnBnClickedButtonDownload)
 END_MESSAGE_MAP()
@@ -66,7 +68,7 @@ BOOL CWork_DLGUSB::OnInitDialog()
 
 	// TODO:  在此添加额外的初始化
 
-	
+	PortSelected = 0;
 
 	//UpdateData(false);
 
@@ -103,21 +105,117 @@ void CWork_DLGUSB::OnSize(UINT nType, int cx, int cy)
 
 }
 
+void CWork_DLGUSB::OnTimer(UINT nIDEvent)
+{
+	int Lower;
+	int Upper;
+
+	if(nIDEvent == BOOTLOADER_GUI_UPDATE_TIMER)
+	{
+		// Update progress bar.
+		mBootLoader.GetProgress(&Lower, &Upper);
+		//ctrlProgressBar.SetRange( 0, Upper );
+		//ctrlProgressBar.SetPos(Lower);		
+	}
+
+
+
+	CDialog::OnTimer(nIDEvent);
+}
+
 
 void CWork_DLGUSB::OnBnClickedButtonCon()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	//UpdateData(TRUE);
+
+	//UINT vid;
+	//UINT pid;
+
+	//sscanf(stringEditBoxUSBVID, "%X", &vid);
+	//sscanf(stringEditBoxUSBPID, "%X", &pid);
+	//// Update the screen with what VID and PID we have read.
+	//stringEditBoxUSBVID.FormatMessage("0x%1!X!",vid);
+	//stringEditBoxUSBPID.FormatMessage("0x%1!X!",pid);
+
+	INT comport=1;
+	INT baud=9600;
+	CString string;
+	UINT vid=0;
+	UINT pid=0;
+	ULONG ip=0;
+	USHORT skt=0;
+
 	UpdateData(TRUE);
 
-	UINT vid;
-	UINT pid;
+	if(ConnectionEstablished)
+	{
+		// Already connected. Disconnect now.
+		ConnectionEstablished = false;
 
-	sscanf(stringEditBoxUSBVID, "%X", &vid);
-	sscanf(stringEditBoxUSBPID, "%X", &pid);
-	// Update the screen with what VID and PID we have read.
-	stringEditBoxUSBVID.FormatMessage("0x%1!X!",vid);
-	stringEditBoxUSBPID.FormatMessage("0x%1!X!",pid);
+		// Shut down the rx-tx thread, if already opened.
+		mBootLoader.ShutdownThread();
 
+		if(mBootLoader.GetPortOpenStatus(PortSelected))
+		{
+			// com port already opened. close com port
+			mBootLoader.ClosePort(PortSelected);			
+		}
+
+		// Print console.
+		//PrintKonsole("Device disconnected");
+		//EnableAllButtons(FALSE);
+
+		//ctrlButtonConnectDevice.SetWindowText("Connect");
+		//ctrlButtonConnectDevice.EnableWindow(TRUE);
+	}
+	else
+	{
+		// Establish new connection.
+		//comport = ctrlComboBoxComPort.GetCurSel();
+		//baud = ctrlComboBoxBaudRate.GetCurSel();
+
+		sscanf(stringEditBoxUSBVID, "%X", &vid);
+		sscanf(stringEditBoxUSBPID, "%X", &pid);
+		// Update the screen with what VID and PID we have read.
+		stringEditBoxUSBVID.FormatMessage("0x%1!X!",vid);
+		stringEditBoxUSBPID.FormatMessage("0x%1!X!",pid);
+		// Read ip address;
+		//ip = SWAP(ip_value);
+		//skt = (USHORT)valEditBoxSocket;
+		UpdateData(FALSE);
+
+		if(mBootLoader.GetPortOpenStatus(PortSelected))
+		{
+			// com port already opened. close com port
+			mBootLoader.ClosePort(PortSelected);			
+		}
+		// Open Communication port freshly.
+		mBootLoader.OpenPort(PortSelected, comport, baud, vid, pid, skt, ip, GetSafeHwnd());
+
+
+		if(mBootLoader.GetPortOpenStatus(PortSelected))
+		{	// COM port opened.
+			// Shut down the rx-tx thread, if already opened.
+			mBootLoader.ShutdownThread();
+			// Create a new thread to do Rx Tx in the back ground.			
+			mBootLoader.CreateRxTxThread(GetSafeHwnd()); // Create Rx Tx thread.
+			// Trigger Read boot info command
+			mBootLoader.SendCommand(READ_BOOT_INFO, 30, 200);					
+
+			// Start timer to handle GUI updates.
+			SetTimer(BOOTLOADER_GUI_UPDATE_TIMER, 300, NULL);  // Timer elapses every 300 ms.
+
+			// Print a message to user/
+			//PrintKonsole("Please reset device and invoke bootloader");
+			// Save button status.
+			//SaveButtonStatus();
+			// Disable all buttons to avoid further operations
+			//EnableAllButtons(false);
+		}
+
+
+	}
 
 }
 
@@ -126,3 +224,6 @@ void CWork_DLGUSB::OnBnClickedButtonDownload()
 {
 	// TODO: 在此添加控件通知处理程序代码
 }
+
+
+

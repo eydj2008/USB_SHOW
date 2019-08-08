@@ -2,6 +2,13 @@
 
 #include "BootLoader.h"
 
+#define BOOTLOADER_ROUTINE_TIMER 1
+#define BOOTLOADER_GUI_UPDATE_TIMER 2
+#define SWAP(x)   ( ((x<<24)&(0xFF000000)) | ((x<<8)&(0x00FF0000))  | ((x>>24)&(0x000000FF)) | ((x>>8)&(0x0000FF00)) )
+
+#define SAVE 1
+#define RESTORE 2
+
 // CWork_DLGUSB 对话框
 
 class CWork_DLGUSB : public CDialog
@@ -18,7 +25,11 @@ public:
 	CString stringEditBoxUSBVID;
 	CString stringEditBoxUSBPID;
 
-	//CBootLoader mBootLoader;
+protected:
+	UINT PortSelected;
+	CBootLoader mBootLoader;
+	bool EraseProgVer;
+	bool ConnectionEstablished;
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
@@ -27,8 +38,10 @@ protected:
 public:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnPaint();
+	afx_msg void OnTimer(UINT nIDEvent);
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnBnClickedButtonCon();
 	afx_msg void OnBnClickedButtonDownload();
+	
 };
