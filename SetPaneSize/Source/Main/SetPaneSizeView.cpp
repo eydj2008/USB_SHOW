@@ -80,7 +80,7 @@ void CSetPaneSizeView::DoDataExchange(CDataExchange* pDX)
 	//DDX_Text(pDX, IDC_EDIT_USB_PID, stringEditBoxUSBPID);
 
 	//
-	//DDX_Text(pDX, IDC_EDIT_SIZE, m_nSizePercent);    //与图表显示冲突
+	//DDX_Text(pDX, IDC_EDIT_USB_VID, m_nSizePercent);    //与图表显示冲突
 	//DDV_MinMaxUInt(pDX, m_nSizePercent, 1, 99);
 
 	//DDX_Text(pDX, IDC_EDIT_WIDTH, m_nContainerSize);

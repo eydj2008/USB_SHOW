@@ -134,8 +134,23 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create Workspace bar\n");
 		return FALSE;      // fail to create
 	}
-
 	m_wndWorkSpace.SetIcon (imagesWorkspace.ExtractIcon (0), FALSE);
+	
+	
+
+	//-----------------------------------------------------------------------------------------------------------
+	//if (!m_wndWorkUsbHid.Create (_T("View  2"), this, CRect (0, 0, 200, 200),
+	//	TRUE, ID_VIEW_USB,
+	//	WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT | CBRS_FLOAT_MULTI))
+	//{
+	//	TRACE0("Failed to create Workspace bar\n");
+	//	return FALSE;      // fail to create
+	//}
+	//m_wndWorkUsbHid.SetIcon (imagesWorkspace.ExtractIcon (0), FALSE);
+	//m_wndWorkUsbHid.EnableDocking(CBRS_ALIGN_ANY);
+	//DockPane (&m_wndWorkUsbHid);
+
+	///m_wndDlgBar.DockToWindow (&m_wndWorkUsbHid, CBRS_ALIGN_LEFT);
 
 	//模拟 LINE DLG
 	if (!m_wndDlgBar.Create (_T("DialogBar"), this, TRUE, 
@@ -150,8 +165,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndDlgBar.SetIcon (imagesWorkspace.ExtractIcon (1), FALSE);
 
 	//m_wndDlgBar.EnableWindow(TRUE);
+	
 
-	// USB DLG
+	// ///USB DLG
 	if (!m_wndDlgUSB.Create (_T("DialogUSB"), this, TRUE, 
 							MAKEINTRESOURCE (IDD_DIALOG_USB), 
 							WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT | CBRS_FLOAT_MULTI, 
@@ -162,27 +178,36 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}
 
 	m_wndDlgUSB.SetIcon (imagesWorkspace.ExtractIcon (1), FALSE);
+	
+
 
 	BOOL bValidString;
 	CString strMainToolbarTitle;
 	bValidString = strMainToolbarTitle.LoadString (IDS_MAIN_TOOLBAR);
 	m_wndToolBar.SetWindowText (strMainToolbarTitle);
 	// TODO: Delete these three lines if you don't want the toolbar to
-	//  be dockable
-	//m_wndMenuBar.EnableDocking(CBRS_ALIGN_ANY);
-	m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
+	//  be dockable   注意顺序
+	m_wndMenuBar.EnableDocking(CBRS_ALIGN_ANY);       //图标
+	m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);       //菜单
 	m_wndWorkSpace.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndDlgBar.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndDlgUSB.EnableDocking(CBRS_ALIGN_ANY);
 
 	EnableDocking(CBRS_ALIGN_ANY);
 	EnableAutoHidePanes(CBRS_ALIGN_ANY);
-	//DockPane(&m_wndMenuBar);
+	DockPane(&m_wndMenuBar);
 	DockPane(&m_wndToolBar);
 	DockPane (&m_wndWorkSpace);
+	DockPane (&m_wndDlgUSB);
+
+	m_wndDlgBar.DockToWindow (&m_wndWorkSpace, CBRS_ALIGN_RIGHT);
 	m_wndDlgBar.DockToWindow (&m_wndWorkSpace, CBRS_ALIGN_LEFT);
-	m_wndDlgUSB.DockToWindow (&m_wndWorkSpace, CBRS_ALIGN_BOTTOM);
+
 	m_wndToolBar.EnableCustomizeButton (TRUE, ID_VIEW_CUSTOMIZE, _T("Customize..."));
+
+
+	
+
 	return 0;
 }
 
@@ -260,7 +285,8 @@ afx_msg LRESULT CMainFrame::OnToolbarReset(WPARAM /*wp*/,LPARAM)
 	return 0;
 }
 
-BOOL CMainFrame::OnShowPopupMenu (CMFCPopupMenu* pMenuPopup)
+//菜单操作函数 
+BOOL CMainFrame::OnShowPopupMenu (CMFCPopupMenu* pMenuPopup)   //子单 
 {
 	//---------------------------------------------------------
 	// Replace ID_VIEW_TOOLBARS menu item to the toolbars list:
@@ -295,6 +321,7 @@ BOOL CMainFrame::OnShowPopupMenu (CMFCPopupMenu* pMenuPopup)
 	return TRUE;
 }
 
+//主单
 void CMainFrame::OnViewWorkspace() 
 {
 	ShowPane (&m_wndWorkSpace,

@@ -31,10 +31,11 @@
 #define IDC_BUTTON_Download             1056
 #define IDC_BUTTON_CLR                  1057
 #define IDC_EDIT2                       1058
-#define IDC_EDIT_USB_PID                1058
-#define IDC_EDIT_USB_VID                1059
-#define IDC_BUTTON2                     1060             //
-#define IDC_BUTTON3                     1061             //
+#define IDC_EDIT_USB_PID                1059
+#define IDC_EDIT_USB_VID                1060
+
+#define IDC_BUTTON2                     1070             //
+#define IDC_BUTTON3                     1071             //
 
 #define ID_VIEW_CUSTOMIZE               32770
 #define ID_VIEW_TOOLBARS                32771

@@ -1103,6 +1103,7 @@
     <ClCompile Include="Source\Main\SetPaneSizeView.cpp" />
     <ClCompile Include="Source\Main\StdAfx.cpp" />
     <ClCompile Include="Source\Main\WorkspaceBar.cpp" />
+    <ClCompile Include="Source\Main\WorkUsbHid.cpp" />
     <ClCompile Include="Source\USB_HID\USB_HID.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -1114,6 +1115,7 @@
     <ClInclude Include="Source\Main\StdAfx.h" />
     <ClInclude Include="Source\Main\targetver.h" />
     <ClInclude Include="Source\Main\WorkspaceBar.h" />
+    <ClInclude Include="Source\Main\WorkUsbHid.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

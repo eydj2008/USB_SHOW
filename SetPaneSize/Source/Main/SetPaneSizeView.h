@@ -43,7 +43,8 @@ public:
 	CGraph* testGraph;
 	CGraphSeries* series[NumSeriesVal];
 	//CGraphSeries* series1;
-
+public:
+	//enum { IDD = IDD_DIALOG_USB };
 	CString stringEditBoxUSBVID;
 	CString stringEditBoxUSBPID;
 

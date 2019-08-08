@@ -11,6 +11,7 @@
 #pragma once
 
 #include "WorkspaceBar.h"
+#include "WorkUsbHid.h"
 
 #define CFrameWnd CFrameWndEx
 
@@ -46,6 +47,7 @@ protected:  // control bar embedded members
 	CMFCStatusBar   m_wndStatusBar;
 	CMFCToolBar		m_wndToolBar;
 	CWorkspaceBar   m_wndWorkSpace;
+	//CWorkUsbHid     m_wndWorkUsbHid;
 	CPaneDialog		m_wndDlgBar;
 	CPaneDialog		m_wndDlgUSB;
 
