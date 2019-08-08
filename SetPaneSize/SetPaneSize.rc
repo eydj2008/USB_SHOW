@@ -244,6 +244,7 @@ BEGIN
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "USB_HID",                     ID_VIEW_USB
         MENUITEM "PlotLine",                    ID_VIEW_DLGBAR
+        MENUITEM "USB2",                        ID_VIEW_USB2
     END
     POPUP "&Help"
     BEGIN

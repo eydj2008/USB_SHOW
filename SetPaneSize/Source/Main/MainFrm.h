@@ -47,7 +47,7 @@ protected:  // control bar embedded members
 	CMFCStatusBar   m_wndStatusBar;
 	CMFCToolBar		m_wndToolBar;
 	CWorkspaceBar   m_wndWorkSpace;
-	//CWorkUsbHid     m_wndWorkUsbHid;
+	CWorkUsbHid     m_wndWorkUsbHid;
 	CPaneDialog		m_wndDlgBar;
 	CPaneDialog		m_wndDlgUSB;
 
@@ -62,6 +62,8 @@ protected:
 	afx_msg void OnUpdateViewDialogBar(CCmdUI* pCmdUI);
 	afx_msg void OnViewDialogUSB();
 	afx_msg void OnUpdateViewDialogUSB(CCmdUI* pCmdUI);
+	afx_msg void OnViewWorkUSB();
+	afx_msg void OnUpdateViewWorkUSB(CCmdUI* pCmdUI);
 
 	DECLARE_MESSAGE_MAP()
 

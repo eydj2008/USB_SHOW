@@ -33,10 +33,8 @@
 #define IDC_EDIT2                       1058
 #define IDC_EDIT_USB_PID                1059
 #define IDC_EDIT_USB_VID                1060
-
-#define IDC_BUTTON2                     1070             //
-#define IDC_BUTTON3                     1071             //
-
+#define IDC_BUTTON2                     1070
+#define IDC_BUTTON3                     1071
 #define ID_VIEW_CUSTOMIZE               32770
 #define ID_VIEW_TOOLBARS                32771
 #define ID_VIEW_DLGBAR                  32792
@@ -44,6 +42,7 @@
 #define ID_VIEW_USB                     32833
 #define ID_VIEW_DLGBAR1                 32834
 #define ID_VIEW_PLOTLINE                32835
+#define ID_VIEW_USB2                    32836
 
 // Next default values for new objects
 // 
@@ -51,7 +50,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        156
-#define _APS_NEXT_COMMAND_VALUE         32836
+#define _APS_NEXT_COMMAND_VALUE         32837
 #define _APS_NEXT_CONTROL_VALUE         1061
 #define _APS_NEXT_SYMED_VALUE           108
 #endif

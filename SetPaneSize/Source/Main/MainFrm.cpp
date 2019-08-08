@@ -39,6 +39,10 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 
 	ON_COMMAND(ID_VIEW_USB,    OnViewDialogUSB)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_USB, OnUpdateViewDialogUSB)
+
+	
+	ON_COMMAND(ID_VIEW_USB2,    OnViewWorkUSB)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_USB2, OnUpdateViewWorkUSB)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -139,18 +143,15 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	
 
 	//-----------------------------------------------------------------------------------------------------------
-	//if (!m_wndWorkUsbHid.Create (_T("View  2"), this, CRect (0, 0, 200, 200),
-	//	TRUE, ID_VIEW_USB,
-	//	WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT | CBRS_FLOAT_MULTI))
-	//{
-	//	TRACE0("Failed to create Workspace bar\n");
-	//	return FALSE;      // fail to create
-	//}
-	//m_wndWorkUsbHid.SetIcon (imagesWorkspace.ExtractIcon (0), FALSE);
-	//m_wndWorkUsbHid.EnableDocking(CBRS_ALIGN_ANY);
-	//DockPane (&m_wndWorkUsbHid);
+	if (!m_wndWorkUsbHid.Create (_T("View  2"), this, CRect (100, 100, 300, 300),
+		TRUE, ID_VIEW_USB2,
+		WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT | CBRS_FLOAT_MULTI))
+	{
+		TRACE0("Failed to create Workspace bar\n");
+		return FALSE;      // fail to create
+	}
+	m_wndWorkUsbHid.SetIcon (imagesWorkspace.ExtractIcon (0), FALSE);
 
-	///m_wndDlgBar.DockToWindow (&m_wndWorkUsbHid, CBRS_ALIGN_LEFT);
 
 	//Ä£Äâ LINE DLG
 	if (!m_wndDlgBar.Create (_T("DialogBar"), this, TRUE, 
@@ -192,16 +193,19 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndWorkSpace.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndDlgBar.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndDlgUSB.EnableDocking(CBRS_ALIGN_ANY);
+	m_wndWorkUsbHid.EnableDocking(CBRS_ALIGN_ANY);
 
 	EnableDocking(CBRS_ALIGN_ANY);
 	EnableAutoHidePanes(CBRS_ALIGN_ANY);
 	DockPane(&m_wndMenuBar);
 	DockPane(&m_wndToolBar);
 	DockPane (&m_wndWorkSpace);
-	DockPane (&m_wndDlgUSB);
+	//DockPane (&m_wndDlgUSB);
+	DockPane (&m_wndWorkUsbHid);
 
 	m_wndDlgBar.DockToWindow (&m_wndWorkSpace, CBRS_ALIGN_RIGHT);
-	m_wndDlgBar.DockToWindow (&m_wndWorkSpace, CBRS_ALIGN_LEFT);
+	m_wndDlgUSB.DockToWindow (&m_wndWorkSpace, CBRS_ALIGN_LEFT);
+	m_wndWorkUsbHid.DockToWindow (&m_wndWorkSpace, CBRS_ALIGN_BOTTOM);
 
 	m_wndToolBar.EnableCustomizeButton (TRUE, ID_VIEW_CUSTOMIZE, _T("Customize..."));
 
@@ -347,6 +351,12 @@ void CMainFrame::OnViewDialogUSB()
 	RecalcLayout ();
 }
 
+void CMainFrame::OnViewWorkUSB() 
+{
+	ShowPane (&m_wndWorkUsbHid, !(m_wndWorkUsbHid.IsVisible ()), FALSE, TRUE);
+	RecalcLayout ();
+}
+
 void CMainFrame::OnUpdateViewDialogBar(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck (m_wndDlgBar.IsVisible ());
@@ -355,6 +365,11 @@ void CMainFrame::OnUpdateViewDialogBar(CCmdUI* pCmdUI)
 void CMainFrame::OnUpdateViewDialogUSB(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck (m_wndDlgUSB.IsVisible ());
+}
+
+void CMainFrame::OnUpdateViewWorkUSB(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck (m_wndWorkUsbHid.IsVisible ());
 }
 
 BOOL CMainFrame::FindInternalDivider (CDockablePane* pBar, 
