@@ -30,10 +30,16 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNCREATE(CSetPaneSizeView, CFormView)
 
 BEGIN_MESSAGE_MAP(CSetPaneSizeView, CFormView)
-	ON_BN_CLICKED(IDC_DRAW_BTN, OnButtonSetContainerSize) 
-	//ON_BN_CLICKED(IDC_BUTTON_SET_CONTAINER_SIZE, OnButtonSetContainerSize)
-	//ON_BN_CLICKED(IDC_BTN_SET_HEIGHT_IN_PIXELS, OnBtnSetHeightInPixels)
-	//ON_BN_CLICKED(IDC_BTN_SET_WIDTH_IN_PIXELS, OnBtnSetWidthInPixels)
+	ON_WM_CREATE()
+
+	ON_COMMAND(IDC_DRAW_BTN,     OnButtonDraw) 
+	ON_COMMAND(IDC_BUTTON_CLR,   OnButtonDrawClr) 
+	
+	ON_COMMAND(IDC_BUTTON_CON, OnButtonConnect)   //??? 执行不到
+
+	ON_BN_CLICKED(IDC_BUTTON_Download, OnButtonDownload)
+	ON_BN_CLICKED(IDC_BUTTON3 ,      OnBtnSetWidthInPixels)   //IDC_BUTTON_CLR
+
 	ON_WM_CONTEXTMENU()
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CFormView::OnFilePrint)
@@ -49,13 +55,16 @@ END_MESSAGE_MAP()
 CSetPaneSizeView::CSetPaneSizeView()
 	: CFormView(CSetPaneSizeView::IDD)
 {
-	//m_nSizePercent = 50;
+	m_nSizePercent = 50;
 	//m_nContainerSize = 100;
 	//m_nHeightInPixels = 100;
 	//m_nWidthInPixels = 100;
 
 	iTimes        = 0;
 	graphComplete = FALSE;
+
+	stringEditBoxUSBVID = "0x28BD";
+	stringEditBoxUSBPID = "0x1000";
 }
 
 CSetPaneSizeView::~CSetPaneSizeView()
@@ -65,9 +74,15 @@ CSetPaneSizeView::~CSetPaneSizeView()
 
 void CSetPaneSizeView::DoDataExchange(CDataExchange* pDX)
 {
-	//CFormView::DoDataExchange(pDX);
-	//DDX_Text(pDX, IDC_EDIT_SIZE, m_nSizePercent);
+	CFormView::DoDataExchange(pDX);
+
+	//DDX_Text(pDX, IDC_EDIT_USB_VID, stringEditBoxUSBVID);
+	//DDX_Text(pDX, IDC_EDIT_USB_PID, stringEditBoxUSBPID);
+
+	//
+	//DDX_Text(pDX, IDC_EDIT_SIZE, m_nSizePercent);    //与图表显示冲突
 	//DDV_MinMaxUInt(pDX, m_nSizePercent, 1, 99);
+
 	//DDX_Text(pDX, IDC_EDIT_WIDTH, m_nContainerSize);
 	//DDV_MinMaxUInt(pDX, m_nContainerSize, 1, 2056);
 	//DDX_Text(pDX, IDC_EDIT_HEIGHT_IN_PIXELS, m_nHeightInPixels);
@@ -82,6 +97,15 @@ BOOL CSetPaneSizeView::PreCreateWindow(CREATESTRUCT& cs)
 	//  the CREATESTRUCT cs
 
 	return CFormView::PreCreateWindow(cs);
+}
+
+int CSetPaneSizeView::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+{
+	if (CFormView::OnCreate(lpCreateStruct) == -1)
+		return -1;
+
+
+	return 0;
 }
 
 void CSetPaneSizeView::OnInitialUpdate()
@@ -186,20 +210,30 @@ void CSetPaneSizeView::OnContextMenu(CWnd*, CPoint point)
 
 #if 1
 
-void CSetPaneSizeView::OnButtonSetDlgBarSize() 
+void CSetPaneSizeView::OnButtonConnect() 
 {
+	UINT vid;
+	UINT pid;
+
 	UpdateData ();
 	CMainFrame* pMainFrame = DYNAMIC_DOWNCAST (CMainFrame, GetTopLevelFrame());
-	if (pMainFrame != NULL)
-	{
-		pMainFrame->SetDlgBarSizeInContainer (m_nSizePercent);
-	}
+	//if (pMainFrame != NULL)
+	//{
+	//	pMainFrame->SetDlgBarSizeInContainer (m_nSizePercent);
+	//}
+
+	sscanf(stringEditBoxUSBVID, "%X", &vid);
+	sscanf(stringEditBoxUSBPID, "%X", &pid);
+	// Update the screen with what VID and PID we have read.
+	stringEditBoxUSBVID.FormatMessage("0x%1!X!",vid);
+	stringEditBoxUSBPID.FormatMessage("0x%1!X!",pid);
+
 }
 
-void CSetPaneSizeView::OnButtonSetContainerSize() 
+void CSetPaneSizeView::OnButtonDraw() 
 {
 	UpdateData ();	
-	//CMainFrame* pMainFrame = DYNAMIC_DOWNCAST (CMainFrame, GetTopLevelFrame());
+	CMainFrame* pMainFrame = DYNAMIC_DOWNCAST (CMainFrame, GetTopLevelFrame());
 	//if (pMainFrame != NULL)
 	//{
 	//	pMainFrame->SetContainerSize (m_nContainerSize);
@@ -286,24 +320,35 @@ void CSetPaneSizeView::OnButtonSetContainerSize()
 
 }
 
-void CSetPaneSizeView::OnBtnSetHeightInPixels() 
+void CSetPaneSizeView::OnButtonDrawClr() 
 {
 	UpdateData ();	
 	CMainFrame* pMainFrame = DYNAMIC_DOWNCAST (CMainFrame, GetTopLevelFrame());
-	if (pMainFrame != NULL)
-	{
-		pMainFrame->SetDlgBarHeightInPixels (m_nHeightInPixels);
-	}
+	//if (pMainFrame != NULL)
+	//{
+	//	pMainFrame->SetDlgBarHeightInPixels (m_nHeightInPixels);
+	//}
+}
+
+
+void CSetPaneSizeView::OnButtonDownload() 
+{
+	UpdateData ();	
+	CMainFrame* pMainFrame = DYNAMIC_DOWNCAST (CMainFrame, GetTopLevelFrame());
+	//if (pMainFrame != NULL)
+	//{
+	//	pMainFrame->SetDlgBarHeightInPixels (m_nHeightInPixels);
+	//}
 }
 
 void CSetPaneSizeView::OnBtnSetWidthInPixels() 
 {
 	UpdateData ();	
 	CMainFrame* pMainFrame = DYNAMIC_DOWNCAST (CMainFrame, GetTopLevelFrame());
-	if (pMainFrame != NULL)
-	{
-		pMainFrame->SetDlgBarWidthInPixels (m_nWidthInPixels);
-	}
+	//if (pMainFrame != NULL)
+	//{
+	//	pMainFrame->SetDlgBarWidthInPixels (m_nWidthInPixels);
+	//}
 }
 #endif
 

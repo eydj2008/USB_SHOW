@@ -44,6 +44,9 @@ public:
 	CGraphSeries* series[NumSeriesVal];
 	//CGraphSeries* series1;
 
+	CString stringEditBoxUSBVID;
+	CString stringEditBoxUSBPID;
+
 // Attributes
 public:
 	CSetPaneSizeDoc* GetDocument();
@@ -53,6 +56,7 @@ public:
 
 // Overrides
 	public:
+   
     virtual void OnDraw(CDC* pDC); 
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	protected:
@@ -72,10 +76,14 @@ public:
 #endif
 
 protected:
-	afx_msg void OnButtonSetDlgBarSize();
-	afx_msg void OnButtonSetContainerSize();
-	afx_msg void OnBtnSetHeightInPixels();
+	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	afx_msg void OnButtonDraw();
+	afx_msg void OnButtonDrawClr();
+	afx_msg void OnButtonConnect();
+	afx_msg void OnButtonDownload();
+
 	afx_msg void OnBtnSetWidthInPixels();
+
 	afx_msg void OnContextMenu(CWnd*, CPoint point);
 	afx_msg void OnFilePrintPreview();
 	afx_msg void OnTimer(UINT_PTR nIDEvent);

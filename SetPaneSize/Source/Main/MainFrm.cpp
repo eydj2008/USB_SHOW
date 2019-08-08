@@ -30,10 +30,13 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_COMMAND(ID_VIEW_CUSTOMIZE, OnViewCustomize)
 	ON_REGISTERED_MESSAGE(AFX_WM_RESETTOOLBAR, OnToolbarReset)
 	ON_REGISTERED_MESSAGE(AFX_WM_TOOLBARMENU, OnToolbarContextMenu)
+
 	ON_COMMAND(ID_VIEW_WORKSPACE, OnViewWorkspace)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WORKSPACE, OnUpdateViewWorkspace)
+
 	ON_COMMAND(ID_VIEW_DLGBAR, OnViewDialogBar)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_DLGBAR, OnUpdateViewDialogBar)
+
 	ON_COMMAND(ID_VIEW_USB,    OnViewDialogUSB)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_USB, OnUpdateViewDialogUSB)
 END_MESSAGE_MAP()
@@ -177,7 +180,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	//DockPane(&m_wndMenuBar);
 	DockPane(&m_wndToolBar);
 	DockPane (&m_wndWorkSpace);
-	m_wndDlgBar.DockToWindow (&m_wndWorkSpace, CBRS_ALIGN_BOTTOM);
+	m_wndDlgBar.DockToWindow (&m_wndWorkSpace, CBRS_ALIGN_LEFT);
 	m_wndDlgUSB.DockToWindow (&m_wndWorkSpace, CBRS_ALIGN_BOTTOM);
 	m_wndToolBar.EnableCustomizeButton (TRUE, ID_VIEW_CUSTOMIZE, _T("Customize..."));
 	return 0;
@@ -438,6 +441,7 @@ void CMainFrame::SetDlgBarSizeInContainer (UINT nSize)
 
 	pDivider->Move (ptOffset);
 }
+
 void CMainFrame::SetDlgBarHeightInPixels (UINT nHeight)
 {
 	BOOL bLeftBar = FALSE;

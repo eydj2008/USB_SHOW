@@ -40,7 +40,7 @@ void CGraphDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CGraphDlg, CDialog)
 	//{{AFX_MSG_MAP(CGraphDlg)
-	ON_BN_CLICKED(IDC_DRAW_BTN, OnDrawBtn)
+	//ON_BN_CLICKED(IDC_DRAW_BTN, OnDrawBtn)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
