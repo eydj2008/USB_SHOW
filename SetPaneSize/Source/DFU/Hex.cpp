@@ -4,9 +4,9 @@
 #include "USB_HID.h"
 #include "Hex.h"
 #include "BootLoader.h"
-#include "PIC32UBL.h"
-#include "PIC32UBLDlg.h"
-#include ".\pic32ubldlg.h"
+//#include "PIC32UBL.h"
+//#include "PIC32UBLDlg.h"
+//#include ".\pic32ubldlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -170,7 +170,7 @@ unsigned short CHexManager::ConvertAsciiToHex(void *VdAscii, void *VdHexRec)
 		}
 	}
 
-	return (i/2); // i/2: Because, an representing Hex in ASCII takes 2 bytes.
+	return (unsigned short)(i/2); // i/2: Because, an representing Hex in ASCII takes 2 bytes.
 }
 
 

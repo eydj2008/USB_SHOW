@@ -1,5 +1,10 @@
 #pragma once
 
+#include "Hex.h"
+#include "Ethernet.h"
+#include "ComPort.h"
+#include "USB_HID.h"
+
 // Notify message IDs
 #define WM_USER_BOOTLOADER_RESP_OK WM_USER+1
 #define WM_USER_BOOTLOADER_NO_RESP WM_USER+2

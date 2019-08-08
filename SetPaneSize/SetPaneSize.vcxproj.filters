@@ -22,6 +22,12 @@
     <Filter Include="Source Files\Graph">
       <UniqueIdentifier>{1f0ff881-52a9-4a09-b4af-1cf0688673c2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\DFU">
+      <UniqueIdentifier>{ba2ead8b-d86d-40fb-ab09-0f55e6ddacc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ComUdp">
+      <UniqueIdentifier>{ce631848-eb94-4fde-8c5f-cfa70ac931e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SetPaneSize.rc">
@@ -105,6 +111,18 @@
     </ClCompile>
     <ClCompile Include="Source\Main\Work_DLGUSB.cpp">
       <Filter>Source Files\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DFU\BootLoader.cpp">
+      <Filter>Source Files\DFU</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DFU\Hex.cpp">
+      <Filter>Source Files\DFU</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Communication\ComPort.cpp">
+      <Filter>Source Files\ComUdp</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Communication\Ethernet.cpp">
+      <Filter>Source Files\ComUdp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

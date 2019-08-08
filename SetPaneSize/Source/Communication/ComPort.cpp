@@ -4,9 +4,9 @@
 #include "USB_HID.h"
 #include "Hex.h"
 #include "BootLoader.h"
-#include "PIC32UBL.h"
-#include "PIC32UBLDlg.h"
-#include ".\pic32ubldlg.h"
+//#include "PIC32UBL.h"
+//#include "PIC32UBLDlg.h"
+//#include ".\pic32ubldlg.h"
 
 
 #ifdef _DEBUG
@@ -31,8 +31,8 @@ void CComPort::OpenComPort(unsigned int comPort, unsigned int baud)
 {    
 	CString buff;
 	
-    DWORD        bytes_read    = 0;     // Number of bytes read from port    
-    DWORD        bytes_written = 0;    // Number of bytes written to the port    
+    //DWORD        bytes_read    = 0;     // Number of bytes read from port    
+    //DWORD        bytes_written = 0;    // Number of bytes written to the port    
     
     int   bStatus;
     DCB          comSettings;          // Contains various port settings    

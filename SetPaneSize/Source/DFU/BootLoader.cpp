@@ -4,9 +4,9 @@
 #include "USB_HID.h"
 #include "Hex.h"
 #include "BootLoader.h"
-#include "PIC32UBL.h"
-#include "PIC32UBLDlg.h"
-#include ".\pic32ubldlg.h"
+//#include "PIC32UBL.h"
+//#include "PIC32UBLDlg.h"
+//#include ".\pic32ubldlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -88,7 +88,7 @@ UINT RxTxThread(LPVOID lpParam)
  *****************************************************************************/
 void CBootLoader::ShutdownThread( )
 {
-   HRESULT hr = S_OK;
+   //HRESULT hr = S_OK;
   
    if(BtlThread)
    {
@@ -99,7 +99,7 @@ void CBootLoader::ShutdownThread( )
 	   if(ThreadKilled == FALSE)
 	   {
 		   // Thread was not killed. Kill thread by force.
-			::TerminateThread( BtlThread, -1000 );
+			::TerminateThread( BtlThread, (DWORD)-1000 );
 			// Close the handle and NULL it out
 			::CloseHandle( BtlThread );
 	   }
@@ -208,7 +208,7 @@ void CBootLoader::HandleResponse(void)
 {
 	unsigned char cmd = RxData[0];
 	char majorVer = RxData[3];
-	char minorVer = RxData[4];
+	//char minorVer = RxData[4];
 	CString string;
 	 
 	
@@ -482,14 +482,14 @@ bool CBootLoader::SendCommand(char cmd, unsigned short Retries, unsigned short D
 	case READ_CRC:
 		Buff[BuffLen++] = cmd;
 		HexManager.VerifyFlash((unsigned int*)&StartAddress, (unsigned int*)&Len, (unsigned short*)&crc);
-		Buff[BuffLen++] = (StartAddress);
-		Buff[BuffLen++] = (StartAddress >> 8);
-		Buff[BuffLen++] = (StartAddress >> 16);
-		Buff[BuffLen++] = (StartAddress >> 24);
-		Buff[BuffLen++] = (Len);
-		Buff[BuffLen++] = (Len >> 8);
-		Buff[BuffLen++] = (Len >> 16);
-		Buff[BuffLen++] = (Len >> 24);
+		Buff[BuffLen++] = (char)(StartAddress);
+		Buff[BuffLen++] = (char)(StartAddress >> 8);
+		Buff[BuffLen++] = (char)(StartAddress >> 16);
+		Buff[BuffLen++] = (char)(StartAddress >> 24);
+		Buff[BuffLen++] = (char)(Len);
+		Buff[BuffLen++] = (char)(Len >> 8);
+		Buff[BuffLen++] = (char)(Len >> 16);
+		Buff[BuffLen++] = (char)(Len >> 24);
 		Buff[BuffLen++] =  (char)crc;
 		Buff[BuffLen++] =  (char)(crc >> 8);
 		MaxRetry = RetryCount = Retries;	
@@ -633,7 +633,7 @@ void CBootLoader::OpenPort(UINT portType, UINT comport, UINT baud, UINT vid, UIN
  *****************************************************************************/
 BOOL CBootLoader::GetPortOpenStatus(UINT PortType)
 {
-	BOOL result;
+	BOOL result=FALSE;
 	
     switch(PortType)
 	{
@@ -719,7 +719,7 @@ void CBootLoader::WritePort(char *buffer, int bufflen)
  *****************************************************************************/
 unsigned short CBootLoader::ReadPort(char *buffer, int bufflen)
 {
-	unsigned short bytesRead;
+	unsigned short bytesRead=0;
 	switch(PortSelected)
 	{
 	case USB:
@@ -735,7 +735,7 @@ unsigned short CBootLoader::ReadPort(char *buffer, int bufflen)
 		break;
 	}
 
-	return bytesRead;
+	return (unsigned short)bytesRead;
 }
 
 

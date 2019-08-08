@@ -1,5 +1,6 @@
 #pragma once
 
+#include "BootLoader.h"
 
 // CWork_DLGUSB 对话框
 
@@ -16,6 +17,8 @@ public:
 
 	CString stringEditBoxUSBVID;
 	CString stringEditBoxUSBPID;
+
+	//CBootLoader mBootLoader;
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持

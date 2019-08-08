@@ -5,6 +5,12 @@
 #include "SetPaneSize.h"
 #include "Work_DLGUSB.h"
 
+//#include "Ethernet.h"
+//#include "ComPort.h"
+//#include "USB_HID.h"
+//#include "Hex.h"
+//#include "BootLoader.h"
+
 
 // CWork_DLGUSB ¶Ô»°¿ò
 

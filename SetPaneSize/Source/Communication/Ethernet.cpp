@@ -5,9 +5,9 @@
 #include "Ethernet.h"
 #include "Hex.h"
 #include "BootLoader.h"
-#include "PIC32UBL.h"
-#include "PIC32UBLDlg.h"
-#include ".\pic32ubldlg.h"
+//#include "PIC32UBL.h"
+//#include "PIC32UBLDlg.h"
+//#include ".\pic32ubldlg.h"
 
 
 #ifdef _DEBUG
@@ -72,7 +72,7 @@ USHORT CEthernet::ReadUdpPort(BYTE* buffer, INT MaxLen)
 		//MessageBox(NULL, "Receive Socket Error!", "Socket Error", MB_OK|MB_ICONERROR);
 		return 0;
 	}
-	return MaxLen;
+	return (USHORT)MaxLen;
 
 }
 
